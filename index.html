@@ -901,6 +901,8 @@ const DOMAINS = [
 
 /* 我正在研究什么 */
 const RESEARCH = [
+  {topic:"选题被做烂了，视频还能怎么做？",stage:"已发布",since:"2026-09-06",pct:100,href:"articles/video-rhythm.html",why:"从三张咖啡海报出发，讨论如何安排信息、追问与细节，让熟悉的选题产生新的阅读和观看体验。"},
+
   {topic:"AI越聊越笨，先别急着补提示词",stage:"已发布",since:"2026-09-06",pct:100,href:"articles/context-rot.html",why:"为什么提示词越补越长，结果却越来越差？从甲方需求到上下文腐烂，用四个动作给 AI 一张能开工的工作台。"},
   {topic:"欧美纷纷放弃全面电动化，中国电车点错科技树？",stage:"已完成",since:"2026-09-06",pct:100,href:"articles/ev-technology-tree.html",why:"阿Test正经比比视频文稿校订版。从购车动机到能源结构，再到电动与氢能路线，修正转写错误，理顺表达与关键事实。"},
   {topic:"AI 短片的叙事节奏",stage:"攻坚期",since:"2026-07",pct:62,
@@ -1286,10 +1288,10 @@ RESEARCH.slice(0,3).forEach((r,i)=>{
   d.className="r-card "+(i===0?"writing-featured":"writing-secondary");
   if(r.href)d.href=r.href;
   if(i===0){
-    d.innerHTML=`<div class="writing-cover"><img src="assets/articles/context-rot/longmemeval.png?v=2" width="1189" height="590" alt="Chroma 研究：相关片段与完整聊天记录的表现对比"></div>
+    d.innerHTML=`<div class="writing-cover"><img src="assets/articles/video-rhythm/coffee-posters.png" width="1536" height="1024" alt="虚构咖啡品牌的三张海报：同一个选题如何构建叙事节奏"></div>
       <div class="writing-copy"><time class="writing-date" datetime="${r.since}">发布于 ${r.since}</time><h3>${r.topic}</h3><p class="why">${r.why}</p><div class="writing-bottom"><span>阅读全文</span><span aria-hidden="true">↗</span></div></div>`;
   }else{
-    d.innerHTML=`<span class="writing-date">${r.stage} · 始于 ${r.since}</span><h3>${r.topic}</h3><p class="why">${r.why}</p><div class="writing-bottom"><span>${r.href?"阅读文稿":"研究中"}</span><span>${r.href?"↗":r.pct+"%"}</span></div>`;
+    d.innerHTML=`<span class="writing-date">${r.stage} · 始于 ${r.since}</span><h3>${r.topic}</h3><p class="why">${r.why}</p><div class="writing-bottom"><span>${r.href?"阅读全文":"研究中"}</span><span>${r.href?"↗":r.pct+"%"}</span></div>`;
   }
   rg.appendChild(d);
 });
@@ -1332,7 +1334,7 @@ function count(el,target,suffix){
   let v=0;const step=Math.max(1,Math.round(target/28));
   const iv=setInterval(()=>{v+=step;if(v>=target){v=target;clearInterval(iv)}el.textContent=v;},40);
 }
-count(document.getElementById("stat-m"),METHODS.filter(m=>m.formal).length);
+count(document.getElementById("stat-m"),new Set([...METHODS.filter(m=>m.formal).map(m=>m.href),...RESEARCH.filter(r=>r.stage==="已发布"&&r.href).map(r=>r.href)]).size);
 count(document.getElementById("stat-w"),WORKS.length);
 count(document.getElementById("stat-t"),COMBOS.reduce((n,c)=>n+c.tools.length,0));
 
