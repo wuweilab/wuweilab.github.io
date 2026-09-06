@@ -153,7 +153,7 @@ section{max-width:1080px;margin:0 auto;padding:80px 24px}
 .kp-btn.ghost:hover{border-color:#A78E62;color:#D8C8AA}
 
 /* ===== 工具箱 ===== */
-.tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tools-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .combo{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;transition:.2s;box-shadow:var(--shadow)}
 .combo:hover{border-color:#D8C8AA;transform:translateY(-3px)}
 .combo-head{margin-bottom:14px}
@@ -677,7 +677,7 @@ a.m-card,a.r-card{display:block}a.m-card:focus-visible,a.r-card:focus-visible{ou
   <div class="sec-head rv">
     <div class="en">Toolbox</div>
     <h2>常用工具</h2>
-    <p>按短片制作、写作研究和灵感发散等场景，梳理各类工具的分工与搭配方式。</p>
+    <p>围绕影像制作与策划写作，整理从灵感、查证到内容成品的工具搭配。</p>
   </div>
   <div class="tools-grid rv" id="tools-grid"></div>
   <div class="more-wrap" id="t-more" style="display:none"><button class="more-btn" id="t-more-btn">展开全部</button></div>
@@ -912,19 +912,17 @@ const RESEARCH = [
 
 /* 常用工具组合 */
 const COMBOS = [
-  {name:"短片生产组合",sub:"从一张图到一支成片",tools:[
-    {name:"AI 生图",ico:"🎨",note:"分镜草稿机，成本低到可以随便重roll"},
-    {name:"AI 视频生成",ico:"🎬",note:"首帧控图：图画好了才交给他动起来"},
-    {name:"剪辑软件",ico:"✂️",note:"AI 出素材，作品在剪辑台上完成"},
-    {name:"配音合成",ico:"🎙️",note:"日常够用，重情绪的段落自己上"}
+  {name:"影像制作",sub:"从视觉构想到完整短片",tools:[
+    {name:"AI 生图",ico:"🎨",note:"探索画面风格，制作分镜与首帧"},
+    {name:"AI 视频生成",ico:"🎬",note:"让静态画面动起来，尝试镜头与节奏"},
+    {name:"剪辑软件",ico:"✂️",note:"串联素材，调整叙事、字幕与声音"},
+    {name:"配音合成",ico:"🎙️",note:"生成旁白，重点段落搭配真人录音"}
   ]},
-  {name:"写作研究组合",sub:"从查证到成稿",tools:[
-    {name:"对话助手",ico:"💬",note:"重活给主力模型，杂活给快的小模型"},
-    {name:"搜索核查",ico:"🔍",note:"AI 说的不算数，一手出处才算数"}
-  ]},
-  {name:"灵感发散组合",sub:"从一个念头到一版方案",tools:[
-    {name:"对话助手×2",ico:"💭",note:"一个负责发散十个点子，一个负责砍掉七个"},
-    {name:"AI 生图",ico:"🎨",note:"概念图先行，把抽象想法变成能看的东西"}
+  {name:"策划写作",sub:"从选题灵感到方案成稿",tools:[
+    {name:"灵感对话",ico:"💭",note:"发散选题角度，再比较和筛选想法"},
+    {name:"搜索核查",ico:"🔍",note:"查找一手资料，核对事实与出处"},
+    {name:"写作助手",ico:"💬",note:"整理提纲、打磨表达，检查逻辑"},
+    {name:"概念生图",ico:"🎨",note:"将抽象想法转成方案示意与配图"}
   ]}
 ];
 
