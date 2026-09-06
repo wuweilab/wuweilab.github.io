@@ -902,6 +902,7 @@ const DOMAINS = [
 /* 我正在研究什么 */
 const RESEARCH = [
   {topic:"AI越聊越笨，先别急着补提示词",stage:"已发布",since:"2026-09-06",pct:100,href:"articles/context-rot.html",why:"为什么提示词越补越长，结果却越来越差？从甲方需求到上下文腐烂，用四个动作给 AI 一张能开工的工作台。"},
+  {topic:"欧美纷纷放弃全面电动化，中国电车点错科技树？",stage:"已完成",since:"2026-09-06",pct:100,href:"articles/ev-technology-tree.html",why:"阿Test正经比比视频文稿校订版。从购车动机到能源结构，再到电动与氢能路线，修正转写错误，理顺表达与关键事实。"},
   {topic:"AI 短片的叙事节奏",stage:"攻坚期",since:"2026-07",pct:62,
    why:"单镜头生成已经不难，难的是让 10 个镜头讲一个有起伏的故事。正在拆解成熟短片的节拍结构，反推分镜提示词的写法。"},
   {topic:"多模型协作的分工边界",stage:"进行中",since:"2026-08",pct:35,
@@ -1288,7 +1289,7 @@ RESEARCH.slice(0,3).forEach((r,i)=>{
     d.innerHTML=`<div class="writing-cover"><img src="assets/articles/context-rot/longmemeval.png?v=2" width="1189" height="590" alt="Chroma 研究：相关片段与完整聊天记录的表现对比"></div>
       <div class="writing-copy"><time class="writing-date" datetime="${r.since}">发布于 ${r.since}</time><h3>${r.topic}</h3><p class="why">${r.why}</p><div class="writing-bottom"><span>阅读全文</span><span aria-hidden="true">↗</span></div></div>`;
   }else{
-    d.innerHTML=`<span class="writing-date">${r.stage} · 始于 ${r.since}</span><h3>${r.topic}</h3><p class="why">${r.why}</p><div class="writing-bottom"><span>研究中</span><span>${r.pct}%</span></div>`;
+    d.innerHTML=`<span class="writing-date">${r.stage} · 始于 ${r.since}</span><h3>${r.topic}</h3><p class="why">${r.why}</p><div class="writing-bottom"><span>${r.href?"阅读文稿":"研究中"}</span><span>${r.href?"↗":r.pct+"%"}</span></div>`;
   }
   rg.appendChild(d);
 });
