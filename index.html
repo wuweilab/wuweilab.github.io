@@ -781,6 +781,7 @@ a.m-card,a.r-card{display:block}a.m-card:focus-visible,a.r-card:focus-visible{ou
 <script>
 /* ============ 数据（示例内容，后续可随时替换） ============ */
 const METHODS = [
+  {id:14,cat:"提示词与工作流",title:"用AI做网页、生视频，先把规矩说在前面",date:"2026-09-06",read:7,href:"articles/constraints-first.html",formal:true,brief:"从改网页、做视频到交代工作，用带孩子、带员工的类比，讲清楚边界、优先级与检查点该怎样提前确定。"},
   {id:13,cat:"提示词与工作流",title:"AI越聊越笨，先别急着补提示词",date:"2026-09-06",read:5,href:"articles/context-rot.html",formal:true,brief:"提示词越补越长，结果却越来越差。从甲方需求到上下文腐烂，整理让长对话重新清晰的四个动作。"},
   {id:8,cat:"网页设计",title:"层级清楚：每屏只突出一个重点",date:"2026-08",read:3,
    brief:"标题最大、正文次之、辅助信息最弱。让人一眼知道先看什么，是排版的第一使命。",
@@ -910,6 +911,7 @@ const DOMAINS = [
 
 /* 我正在研究什么 */
 const RESEARCH = [
+  {topic:"用AI做网页、生视频，先把规矩说在前面",stage:"已发布",since:"2026-09-06",pct:100,href:"articles/constraints-first.html",why:"从改网页、做视频到交代工作，用带孩子、带员工的类比，讲清楚边界、优先级与检查点该怎样提前确定。"},
   {topic:"选题被做烂了，视频还能怎么做？",stage:"已发布",since:"2026-09-06",pct:100,href:"articles/video-rhythm.html",why:"从三张咖啡海报出发，讨论如何安排信息、追问与细节，让熟悉的选题产生新的阅读和观看体验。"},
 
   {topic:"AI越聊越笨，先别急着补提示词",stage:"已发布",since:"2026-09-06",pct:100,href:"articles/context-rot.html",why:"为什么提示词越补越长，结果却越来越差？从甲方需求到上下文腐烂，用四个动作给 AI 一张能开工的工作台。"},
@@ -1297,7 +1299,7 @@ RESEARCH.slice(0,3).forEach((r,i)=>{
   d.className="r-card "+(i===0?"writing-featured":"writing-secondary");
   if(r.href)d.href=r.href;
   if(i===0){
-    d.innerHTML=`<div class="writing-cover"><img src="assets/articles/video-rhythm/coffee-posters.png" width="1536" height="1024" alt="虚构咖啡品牌的三张海报：同一个选题如何构建叙事节奏"></div>
+    d.innerHTML=`${r.href==="articles/video-rhythm.html"?'<div class="writing-cover"><img src="assets/articles/video-rhythm/coffee-posters.png" width="1536" height="1024" alt="虚构咖啡品牌海报"></div>':""}
       <div class="writing-copy"><time class="writing-date" datetime="${r.since}">发布于 ${r.since}</time><h3>${r.topic}</h3><p class="why">${r.why}</p><div class="writing-bottom"><span>阅读全文</span><span aria-hidden="true">↗</span></div></div>`;
   }else{
     d.innerHTML=`<span class="writing-date">${r.stage} · 始于 ${r.since}</span><h3>${r.topic}</h3><p class="why">${r.why}</p><div class="writing-bottom"><span>${r.href?"阅读全文":"研究中"}</span><span>${r.href?"↗":r.pct+"%"}</span></div>`;
