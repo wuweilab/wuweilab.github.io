@@ -1013,7 +1013,7 @@ function illustration(index,cls,title){
 function renderWorks(){
   const g=document.getElementById("w-grid");g.innerHTML="";
   WORKS.filter(w=>curW==="all"||w.type===curW).forEach(w=>{
-    const d=document.createElement("div");d.className="w-card";
+    const d=document.createElement("a");d.className="w-card";d.href="articles/example.html";d.setAttribute("aria-label",w.title+"：示例内容，待补充");
     d.innerHTML=`<div class="w-thumb">${illustration(WORKS.indexOf(w),'w-img',w.title)}<span class="type-badge">${typeName[w.type]}</span></div>
     <div class="w-body"><h3>${w.title}</h3><p>${w.desc}</p></div>`;
     g.appendChild(d);
