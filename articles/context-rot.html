@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#F4F0E8"><meta name="description" content="为什么 AI 越聊越笨？结合 Chroma 研究、甲方需求的类比与四个可执行动作，整理长对话中的上下文。"><title>AI越聊越笨，先别急着补提示词 · 实践笔记</title><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.loli.net/css2?family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="../assets/articles/article.css?v=3"></head>
+<body><nav>
+  <div class="nav-inner">
+    <a class="logo" href="../index.html#" aria-label="实践笔记">
+      <span class="wu-wordmark"><b>W</b><span class="wu-letter-u">U<i></i></span></span>
+      <span class="logo-copy"><strong>实践笔记</strong></span>
+    </a>
+    <div class="nav-links">
+      <a href="../index.html#about">关于</a><a href="../index.html#methods">笔记</a><a href="../index.html#works">作品</a><a href="../index.html#map">知识树</a><a href="../index.html#tools">工具</a>
+    </div>
+  </div>
+</nav><main id="top"><header class="article-header"><a class="back" href="../index.html#methods">← 返回 AI 方法</a><div class="eyebrow">PRACTICE NOTES</div><h1>AI越聊越笨，<br>先别急着补提示词</h1><p class="dek">关于上下文腐烂，以及如何给 AI 一张能开工的工作台。</p><div class="article-meta"><span>提示词与工作流</span><time datetime="2026-09-06">2026.09.06</time><span>约 5 分钟阅读</span></div></header><article class="prose" aria-label="文章正文">
+<p>用AI写文章，第一稿其实写得挺顺。</p>
+<p>你补充了背景，让它改；改偏了，你再解释一遍；解释完，它又把前面确认过的要求给忘了。</p>
+<p>于是<strong>提示词越写越长，结果却越改越糟</strong>——这事儿是不是很眼熟？</p>
+<h2 id="why">为什么会越聊越差？</h2>
+<p>这类随上下文变长而表现退化的现象，常被叫作「上下文腐烂」，Context Rot。不过，单次改稿变差，不一定都是它造成的。</p>
+<p>Chroma 在 2025 年的一项研究里，对比了两种给模型信息的方式：一种是把完整的聊天记录都扔进去，另一种只给回答问题真正需要的相关片段。在这项聊天记录问答测试中，后者得分明显更高。<a href="https://www.trychroma.com/research/context-rot" target="_blank" rel="noopener" style="color:var(--accent-deep);text-decoration:underline;text-underline-offset:4px">研究原文 ↗</a></p>
+<figure><a class="figure-link" href="../assets/articles/context-rot/longmemeval.png?v=2" target="_blank" aria-label="查看图1完整大图"><img src="../assets/articles/context-rot/longmemeval.png?v=2" width="1189" height="590" alt="图中红柱是只给相关片段的表现，蓝柱是给完整记录。这是当时 Claude 系列在这项测试里的结果。" loading="lazy"></a><figcaption><span class="figure-num">FIG. 01</span>图中红柱是只给相关片段的表现，蓝柱是给完整记录。这是当时 Claude 系列在这项测试里的结果。<span class="figure-actions"><a href="../assets/articles/context-rot/longmemeval.png?v=2" target="_blank">查看完整大图 ↗</a><a href="https://www.trychroma.com/research/context-rot" target="_blank" rel="noopener">Chroma 研究原文 ↗</a></span></figcaption></figure>
+<p class="reader-question">看到这儿你可能会想，那是不是以后都尽量精简提示词、少给背景？</p>
+<p>倒也不是。<strong>不能只看「给得多不多」，也得看「给得对不对」</strong>——窗口装得下，不代表模型能准确挑出重点、处理信息之间的冲突，还能一直记着你之前确认过的要求。这些能力，不能只靠窗口大小来判断。</p>
+<h2 id="brief">需求越加越多，方向却越来越模糊</h2>
+<p>拿服务甲方打个比方，你可能更有感觉。</p>
+<p>领导 A 说，这篇要年轻化，要有传播力。</p>
+<p>领导 B 补一句，品牌调性得稳重，产品卖点一个都不能漏。</p>
+<p>执行的人理解完，又自己加了层要求：开头必须抓人，但不能太夸张；得有故事，但不能编；要突出产品，又不能像广告；最好短一点，但这些信息一个都不能少。</p>
+<p>每个人都觉得，自己只是补充了一点点。</p>
+<p>到乙方手里，已经变成一份<strong>谁也不敢删、谁也没排优先级</strong>的需求。乙方盯着文档，反而不知道从哪下笔了。</p>
+<p>模型当然不会像人一样揣摩职场关系，这里只是打个比方。但它面对的信息难题有相似之处：聊天越长，它除了要完成眼下这个任务，还得从一堆历史信息里辨认，哪些要求还作数，哪些方案早就被否掉了。</p>
+<p>Chroma 的另一组实验也发现了类似的事：往输入里加一些看着相关、其实不回答当前问题的「干扰信息」，模型在测试中的表现也会下降。<a href="https://www.trychroma.com/research/context-rot" target="_blank" rel="noopener" style="color:var(--accent-deep);text-decoration:underline;text-underline-offset:4px">实验出处 ↗</a></p>
+<figure><a class="figure-link" href="../assets/articles/context-rot/distractors.png" target="_blank" aria-label="查看图2完整大图"><img src="../assets/articles/context-rot/distractors.png" width="3542" height="2296" alt="横轴是输入长度，纵轴是准确率。蓝、黄、红线分别对应无干扰、一个干扰项、四个干扰项的情况。" loading="lazy"></a><figcaption><span class="figure-num">FIG. 02</span>横轴是输入长度，纵轴是准确率。蓝、黄、红线分别对应无干扰、一个干扰项、四个干扰项的情况。<span class="figure-actions"><a href="../assets/articles/context-rot/distractors.png" target="_blank">查看完整大图 ↗</a><a href="https://www.trychroma.com/research/context-rot" target="_blank" rel="noopener">Chroma 研究原文 ↗</a></span></figcaption></figure>
+<p>需要说明的是，这些实验展示了特定条件下的退化，尚未解释清楚内部机制，也不是说聊得越久就一定越差。</p>
+<p>换个角度想，你可以把上下文想象成一张工作台。</p>
+<p>刚开始，桌上只摆着任务和材料，很清爽。聊得久了，旧方案、废稿、临时冒出来的想法、反复纠错的记录，全堆了上去。</p>
+<p><strong>模型不会累，但这张桌子会越来越乱</strong>——你要它做事，它还得从这堆东西里找对材料。</p>
+<h2 id="actions">四个动作，把工作台收拾清楚</h2>
+<p>那具体怎么办？这四个动作，更像是在帮它收拾桌子。</p>
+<h3 class="step-heading">1、改需求，直接给完整的最新版</h3>
+<p>别一直把「这里再改一下」「那个用之前的」往上叠。把当前的目标、字数、核心观点、必做和不能做的事项重新捋一遍，顺带说清楚哪些旧要求已经作废。</p>
+<p>遇到冲突，<strong>自己先排好优先级</strong>——别把取舍也藏进聊天记录里，让模型自己猜。</p>
+<h3 class="step-heading">2、连续跑偏，先别急着打补丁</h3>
+<p>刚纠正的问题又冒出来了，否掉的方案又被捡回来，改一处却弄丢另一处——这时候值得停一下，让它先复述一遍自己理解的任务是什么。</p>
+<p>如果连任务都说不明白，先把要求对齐，再接着往下写。要不要重开对话，没有一个「聊满多少轮」的标准答案，看它当下的表现更靠谱。</p>
+<h3 class="step-heading">3、重开之前，做个交接</h3>
+<p>可以直接发这么一段话：</p>
+<blockquote>整理一份新对话交接说明，保留当前目标、已确认事实、最终要求、必要原文和待解决问题，标明已否决的方案和还没证实的猜测。</blockquote>
+<p><strong>自己核对一遍，再带到新对话里去。</strong>关键数字和限制条件尽量留原文，摘要这东西也会出错，别把旧的错误一起搬了家。</p>
+<h3 class="step-heading">4、按阶段给材料，别一股脑全塞进去</h3>
+<p>选题阶段聊角度，提纲阶段定结构，写正文时再补充详细事实和具体要求。<strong>影响选题方向的关键事实与限制，得从一开始就给。</strong></p>
+<p>进入下一阶段，带上已经确认的成果就行，不用把每一轮的争论都留着。</p>
+<p>长提示词可以有用，清晰、相关、互不打架的材料值得留；需要清掉的，是过时的要求和干扰信息。</p>
+<p>下次再觉得AI越聊越笨，不妨先想想，自己是不是也变成了那个不停补需求的甲方——把优先级排好，把废稿收走，给它一张能真正开工的桌子。</p>
+</article><footer class="article-end"><span class="eyebrow">END OF NOTE</span><p>内容、品牌、AI实践</p><div><a href="../index.html#methods">← 回到 AI 方法</a><a href="../index.html#research">正在写的 ↗</a></div></footer></main><footer class="site-footer">WU · 实践笔记 <a href="#top">回到顶部 ↑</a></footer></body></html>
