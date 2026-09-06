@@ -694,7 +694,7 @@ a.m-card,a.r-card{display:block}a.m-card:focus-visible,a.r-card:focus-visible{ou
   <div class="sec-head rv">
     <div class="en">Radio</div>
     <h2>工作电台</h2>
-    <p>五首喜欢的歌，陪伴阅读、写作与专注工作。选一首，单曲循环播放。</p>
+    <p>五首喜欢的歌，陪伴阅读、写作与专注工作。选一首开始，按顺序循环播放。</p>
   </div>
   <div class="radio-layout rv">
   <div class="radio-player">
@@ -731,7 +731,7 @@ a.m-card,a.r-card{display:block}a.m-card:focus-visible,a.r-card:focus-visible{ou
 <button id="backtop" aria-label="回到顶部" title="回到顶部">
   <svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 19V6M5.5 12.5 12 6l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </button>
-<audio id="pl-audio" preload="none" loop></audio>
+<audio id="pl-audio" preload="none"></audio>
 
 <!-- 方法论弹窗 -->
 <div class="modal-mask" id="modal-mask">
@@ -1437,7 +1437,8 @@ function plNext(){plSelect(plCur+1)}
 function plPrev(){plCur<0?plSelect(0):plSelect(plCur-1)}
 plAudio.addEventListener("play",()=>{iPlay.style.display="none";iPause.style.display="";renderMusicState()});
 plAudio.addEventListener("pause",()=>{iPlay.style.display="";iPause.style.display="none";renderMusicState()});
-// Native audio loop repeats the selected track; next/previous remain manual.
+// Advance after each track; plSelect wraps the last track back to the first.
+plAudio.addEventListener("ended",plNext);
 plAudio.addEventListener("timeupdate",()=>{
   if(plAudio.duration){plTime.textContent=plFmt(plAudio.currentTime)+" / "+plFmt(plAudio.duration);
     plFill.style.width=(plAudio.currentTime/plAudio.duration*100)+"%"}
