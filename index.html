@@ -551,7 +551,7 @@ a.m-card,a.r-card{display:block}a.m-card:focus-visible,a.r-card:focus-visible{ou
 @media(max-width:640px){#r-grid{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;gap:16px}#r-grid .writing-featured,#r-grid .writing-secondary{grid-column:1;grid-row:auto}.writing-cover{padding:18px 18px 0}.writing-copy{padding:22px}#r-grid .writing-secondary{padding:22px}#r-grid .writing-featured h3{font-size:25px}}
 
 /* Two-column radio: current album and compact track list. */
-.radio-layout{display:grid;grid-template-columns:1fr 1.12fr;gap:24px;align-items:stretch}
+.radio-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);gap:24px;align-items:stretch}
 .radio-player{padding:24px;background:var(--card);border:1px solid var(--line);border-radius:12px;display:flex;flex-direction:column;justify-content:center}
 .radio-current{display:grid;grid-template-columns:128px 1fr;gap:20px;align-items:center}
 .radio-cover{display:block;width:100%;aspect-ratio:1;border-radius:8px;overflow:hidden}
@@ -561,7 +561,11 @@ a.m-card,a.r-card{display:block}a.m-card:focus-visible,a.r-card:focus-visible{ou
 .radio-player .music-bar{display:grid;grid-template-columns:36px 44px 36px minmax(0,1fr) 74px;gap:14px 6px;width:100%;max-width:none;border:0;padding:0;margin:24px 0 0;background:none}
 .radio-player .pl-bar{grid-row:2;grid-column:1 / 5;width:100%;height:5px;min-width:0}
 .radio-player .mb-time{grid-row:2;grid-column:5;text-align:right;font-size:11px}
-.radio-player .pl-vol{grid-row:1;grid-column:4 / 6;justify-self:end;width:70px}
+.radio-volume{grid-row:1;grid-column:4 / 6;justify-self:end;display:flex;align-items:center;gap:5px;min-width:0;max-width:100%}
+.radio-player .radio-volume .pl-vol{display:block;width:64px;min-width:24px;max-width:100%;margin:0;flex:1}
+.radio-volume .pl-btn{width:28px;height:28px;flex:0 0 28px}
+.radio-volume .pl-btn[aria-pressed="true"]{opacity:.55}
+@media(max-width:440px){.radio-player .radio-volume{grid-row:3;grid-column:1 / -1;justify-self:start;width:100%}}
 .radio-player .pl-btn{border-radius:50%}
 .radio-note{border-top:1px solid var(--line);padding-top:16px;margin-top:20px;font-size:12px;color:var(--ink3)}
 .radio-layout .music-grid{display:grid;grid-template-columns:1fr;gap:10px;max-width:none;width:100%;margin:0}
@@ -574,7 +578,8 @@ a.m-card,a.r-card{display:block}a.m-card:focus-visible,a.r-card:focus-visible{ou
 .radio-layout .mu-card::after{content:'▶';font-size:10px;color:var(--accent-deep);text-align:center}
 .radio-layout .mu-card.playing::after{content:'Ⅱ'}
 .radio-layout .mu-card.selected{border-color:var(--accent);background:#FCF8EF}
-@media(max-width:700px){.radio-layout{grid-template-columns:1fr;gap:16px}.radio-player{padding:20px}.radio-current{grid-template-columns:100px 1fr;gap:16px}#pl-title{font-size:21px}}
+@media(max-width:700px){.radio-layout{gap:14px}.radio-player{padding:16px;min-width:0}.radio-current{grid-template-columns:70px minmax(0,1fr);gap:12px}#pl-title{font-size:18px;overflow-wrap:anywhere}.radio-player .music-bar{grid-template-columns:28px 36px 28px minmax(0,1fr) 54px;gap:12px 3px}.radio-layout .mu-card{grid-template-columns:44px minmax(0,1fr) 14px;gap:10px;padding:10px}.radio-layout .mu-cover{width:44px;height:44px}.radio-layout .mu-name{font-size:13px;overflow-wrap:anywhere}.radio-layout .mu-mood{font-size:10px}.radio-label{font-size:9px}}
+@media(max-width:440px){.radio-layout{gap:10px}.radio-player{padding:12px}.radio-current{grid-template-columns:minmax(0,1fr);gap:12px}.radio-cover{max-width:84px}.radio-player .music-bar{grid-template-columns:24px 32px 24px minmax(0,1fr) 0;gap:10px 2px}.radio-layout .mu-card{grid-template-columns:32px minmax(0,1fr);gap:7px;padding:8px}.radio-layout .mu-cover{width:32px;height:32px}.radio-layout .mu-card::after{display:none}}
 </style>
 </head>
 <body>
@@ -688,18 +693,21 @@ a.m-card,a.r-card{display:block}a.m-card:focus-visible,a.r-card:focus-visible{ou
   <div class="sec-head rv">
     <div class="en">Radio</div>
     <h2>工作电台</h2>
-    <p>五首 AI 辅助创作的纯音乐，陪伴阅读、写作与专注工作。选一首，单曲循环播放。</p>
+    <p>五首喜欢的歌，陪伴阅读、写作与专注工作。选一首，单曲循环播放。</p>
   </div>
   <div class="radio-layout rv">
   <div class="radio-player">
-    <div class="radio-current"><div id="radio-art"></div><div><div class="radio-label">WU MUSIC</div><h3 id="pl-title">晨读 · Lo-fi 学习曲</h3><p id="radio-mood"></p></div></div>
+    <div class="radio-current"><div id="radio-art"></div><div><div class="radio-label">WU MUSIC</div><h3 id="pl-title">Hometown Glory</h3><p id="radio-mood"></p></div></div>
   <div class="music-bar">
     <button class="pl-btn" onclick="plPrev()" aria-label="上一首"><svg viewBox="0 0 24 24" width="15" height="15"><path d="M19 5v14L8 12zM6 5v14" fill="currentColor" stroke="none"/></svg></button>
     <button class="pl-btn pl-play" id="pl-play" onclick="plToggle()" aria-label="播放/暂停"><svg id="pl-icon-play" viewBox="0 0 24 24" width="16" height="16"><path d="M7 4l14 8-14 8z" fill="currentColor"/></svg><svg id="pl-icon-pause" viewBox="0 0 24 24" width="16" height="16" style="display:none"><path d="M6 4h4v16H6zM14 4h4v16h-4z" fill="currentColor"/></svg></button>
     <button class="pl-btn" onclick="plNext()" aria-label="下一首"><svg viewBox="0 0 24 24" width="15" height="15"><path d="M5 5v14l11-7zM18 5v14" fill="currentColor" stroke="none"/></svg></button>
     <div class="pl-bar" id="pl-bar"><div class="pl-fill" id="pl-fill"></div></div>
     <span class="mb-time" id="pl-time">— / —</span>
-    <input type="range" class="pl-vol" id="pl-vol" min="0" max="100" value="60" aria-label="音量">
+    <div class="radio-volume">
+      <button type="button" class="pl-btn" id="pl-mute" aria-label="静音" aria-pressed="false" title="静音"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path id="pl-sound-waves" d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/><path id="pl-sound-muted" d="m15 9 6 6m0-6-6 6" style="display:none"/></svg></button>
+      <input type="range" class="pl-vol" id="pl-vol" min="0" max="100" value="60" aria-label="音量" title="音量 60%">
+    </div>
   </div>
     <p class="radio-note">给正在进行的工作，一点恰好的背景声。</p>
   </div>
@@ -901,6 +909,8 @@ const DOMAINS = [
 
 /* 我正在研究什么 */
 const RESEARCH = [
+  {topic:"选题被做烂了，视频还能怎么做？",stage:"已发布",since:"2026-09-06",pct:100,href:"articles/video-rhythm.html",why:"从三张咖啡海报出发，讨论如何安排信息、追问与细节，让熟悉的选题产生新的阅读和观看体验。"},
+
   {topic:"AI越聊越笨，先别急着补提示词",stage:"已发布",since:"2026-09-06",pct:100,href:"articles/context-rot.html",why:"为什么提示词越补越长，结果却越来越差？从甲方需求到上下文腐烂，用四个动作给 AI 一张能开工的工作台。"},
   {topic:"欧美纷纷放弃全面电动化，中国电车点错科技树？",stage:"已完成",since:"2026-09-06",pct:100,href:"articles/ev-technology-tree.html",why:"阿Test正经比比视频文稿校订版。从购车动机到能源结构，再到电动与氢能路线，修正转写错误，理顺表达与关键事实。"},
   {topic:"AI 短片的叙事节奏",stage:"攻坚期",since:"2026-07",pct:62,
@@ -1286,7 +1296,7 @@ RESEARCH.slice(0,3).forEach((r,i)=>{
   d.className="r-card "+(i===0?"writing-featured":"writing-secondary");
   if(r.href)d.href=r.href;
   if(i===0){
-    d.innerHTML=`<div class="writing-cover"><img src="assets/articles/context-rot/longmemeval.png?v=2" width="1189" height="590" alt="Chroma 研究：相关片段与完整聊天记录的表现对比"></div>
+    d.innerHTML=`<div class="writing-cover"><img src="assets/articles/video-rhythm/coffee-posters.png" width="1536" height="1024" alt="虚构咖啡品牌的三张海报：同一个选题如何构建叙事节奏"></div>
       <div class="writing-copy"><time class="writing-date" datetime="${r.since}">发布于 ${r.since}</time><h3>${r.topic}</h3><p class="why">${r.why}</p><div class="writing-bottom"><span>阅读全文</span><span aria-hidden="true">↗</span></div></div>`;
   }else{
     d.innerHTML=`<span class="writing-date">${r.stage} · 始于 ${r.since}</span><h3>${r.topic}</h3><p class="why">${r.why}</p><div class="writing-bottom"><span>${r.href?"阅读文稿":"研究中"}</span><span>${r.href?"↗":r.pct+"%"}</span></div>`;
@@ -1338,11 +1348,46 @@ count(document.getElementById("stat-t"),COMBOS.reduce((n,c)=>n+c.tools.length,0)
 
 /* ===== 工坊电台 ===== */
 const TRACKS=[
-  {src:"assets/music/study-lofi-loop.mp3",title:"晨读 · Lo-fi 学习曲",mood:"75 BPM · 电钢琴 · 晨间阅读",cover:"assets/covers/morning.jpg"},
-  {src:"assets/music/study-ambient-loop.mp3",title:"深夜工坊 · 环境钢琴",mood:"柔和钢琴 · 深度专注",cover:"assets/covers/night.jpg"},
-  {src:"assets/music/study-jazz-loop.mp3",title:"午后咖啡馆 · 慵懒爵士",mood:"慵懒爵士 · 刷资料",cover:"assets/covers/cafe.jpg"},
-  {src:"assets/music/study-rain-loop.mp3",title:"雨天图书馆 · 钢琴与雨",mood:"雨声底噪 · 沉浸长文",cover:"assets/covers/rain.jpg"},
-  {src:"assets/music/sunny-day-loop.mp3",title:"晴日漫步 · 轻快小调",mood:"112 BPM · 明亮拨弦 · 好心情",cover:"assets/illustrations/sunny-day.png"}
+  {
+    "src": "assets/music/hometown-glory.mp3",
+    "title": "Hometown Glory",
+    "mood": "Adele",
+    "cover": "assets/covers/hometown-glory.jpg",
+    "useCover": true,
+    "dur": "3:39"
+  },
+  {
+    "src": "assets/music/ren-jian.mp3",
+    "title": "人间",
+    "mood": "王菲",
+    "cover": "assets/covers/ren-jian.jpg",
+    "useCover": true,
+    "dur": "4:45"
+  },
+  {
+    "src": "assets/music/lu-xiao-yu.mp3",
+    "title": "路小雨",
+    "mood": "Michael Tai",
+    "cover": "assets/covers/lu-xiao-yu.jpg",
+    "useCover": true,
+    "dur": "3:05"
+  },
+  {
+    "src": "assets/music/moonlight.mp3",
+    "title": "moonlight",
+    "mood": "Dhruv",
+    "cover": "assets/covers/moonlight.jpg",
+    "useCover": true,
+    "dur": "2:39"
+  },
+  {
+    "src": "assets/music/moonlight-sonata-noble.mp3",
+    "title": "月光奏鸣曲 · 第一乐章",
+    "mood": "贝多芬 · Noble Music Project",
+    "cover": "assets/covers/moonlight-sonata-noble.jpg",
+    "useCover": true,
+    "dur": "5:16"
+  }
 ];
 const plAudio=document.getElementById("pl-audio"),plTitle=document.getElementById("pl-title"),
       plTime=document.getElementById("pl-time"),plFill=document.getElementById("pl-fill"),
@@ -1350,13 +1395,16 @@ const plAudio=document.getElementById("pl-audio"),plTitle=document.getElementByI
       plBar=document.getElementById("pl-bar"),plVol=document.getElementById("pl-vol");
 let plCur=-1;
 function plFmt(s){if(!isFinite(s)||s<0)return"0:00";const m=Math.floor(s/60),x=Math.floor(s%60);return m+":"+String(x).padStart(2,"0")}
+function radioCover(t,i,cls){
+  return t.useCover ? `<img class="${cls}" src="${t.cover}" alt="${t.title}封面" style="object-fit:cover">` : illustration(t.illustrationIndex ?? (6+i),cls,t.title);
+}
 function renderMusic(){
   const g=document.getElementById("music-grid");g.innerHTML="";
   TRACKS.forEach((t,i)=>{
     if(i===plCur)return;
     const d=document.createElement("button");d.type="button";d.className="mu-card";d.setAttribute('aria-label','播放 '+t.title);
     d.dataset.track=i;
-    d.innerHTML=`${illustration(6+i,'mu-cover',t.title)}
+    d.innerHTML=`${radioCover(t,i,'mu-cover')}
     <div class="mu-meta"><div class="mu-txt"><span class="mu-name">${t.title}</span><span class="mu-mood">${t.mood}</span></div><span class="mu-dur">${t.dur||"—:—"}</span></div>`;
     d.onclick=()=>i===plCur?plToggle():plSelect(i);
     g.appendChild(d);
@@ -1375,7 +1423,7 @@ function plSelect(i,autoplay=true){
   plCur=(i+TRACKS.length)%TRACKS.length;
   plAudio.src=TRACKS[plCur].src;
   plTitle.textContent=TRACKS[plCur].title;
-  document.getElementById('radio-art').innerHTML=illustration(6+plCur,'radio-cover',TRACKS[plCur].title);
+  document.getElementById('radio-art').innerHTML=radioCover(TRACKS[plCur],plCur,'radio-cover');
   document.getElementById('radio-mood').textContent=TRACKS[plCur].mood;
   plFill.style.width="0%";plTime.textContent="— / —";
   renderMusic();
@@ -1401,7 +1449,21 @@ plBar.addEventListener("click",e=>{
   const rect=plBar.getBoundingClientRect();
   if(plAudio.duration)plAudio.currentTime=(e.clientX-rect.left)/rect.width*plAudio.duration;
 });
-plVol.addEventListener("input",()=>plAudio.volume=plVol.value/100);
+const plMute=document.getElementById('pl-mute');
+let plLastVolume=.6;
+function syncVolume(){
+  const silent=plAudio.muted||plAudio.volume===0;
+  plVol.value=plAudio.muted?0:Math.round(plAudio.volume*100);
+  plVol.title='音量 '+plVol.value+'%';
+  plMute.setAttribute('aria-pressed',String(silent));
+  plMute.setAttribute('aria-label',silent?'取消静音':'静音');
+  plMute.title=silent?'取消静音':'静音';
+  document.getElementById('pl-sound-waves').style.display=silent?'none':'';
+  document.getElementById('pl-sound-muted').style.display=silent?'':'none';
+}
+plVol.addEventListener('input',()=>{plAudio.volume=plVol.value/100;plAudio.muted=false;if(plAudio.volume>0)plLastVolume=plAudio.volume;syncVolume()});
+plMute.addEventListener('click',()=>{if(plAudio.muted||plAudio.volume===0){if(plAudio.volume===0)plAudio.volume=plLastVolume;plAudio.muted=false}else{plLastVolume=plAudio.volume;plAudio.muted=true}syncVolume()});
+plAudio.addEventListener('volumechange',syncVolume);
 // 预取各曲时长（仅读元数据）
 TRACKS.forEach(t=>{
   const probe=new Audio();probe.preload="metadata";probe.src=t.src;
