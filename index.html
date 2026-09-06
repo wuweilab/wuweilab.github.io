@@ -538,7 +538,8 @@ a.m-card,a.r-card{display:block}a.m-card:focus-visible,a.r-card:focus-visible{ou
 #r-grid .r-card{min-width:0;grid-column:auto;border:1px solid var(--line);border-radius:6px;margin:0}
 #r-grid .writing-featured{grid-column:1;grid-row:1 / span 2;display:flex;flex-direction:column;padding:0;overflow:hidden}
 .writing-cover{padding:24px 24px 0;background:var(--card)}
-.writing-cover img{display:block;width:100%;height:auto;object-fit:contain;border:1px solid var(--line);background:white}
+.writing-cover img{display:block;width:auto;max-width:100%;height:auto;max-height:160px;margin:0 auto;object-fit:contain;border:1px solid var(--line);background:white}
+@media(max-width:640px){.writing-cover img{max-height:130px}}
 .writing-copy{padding:26px 28px;display:flex;flex-direction:column;flex:1}
 .writing-date{display:block;font:10px/1.7 var(--mono);color:var(--accent-deep);letter-spacing:.04em;margin-bottom:16px}
 #r-grid .writing-featured h3{font-size:clamp(24px,2.5vw,32px);line-height:1.5;font-weight:400;margin-bottom:14px;letter-spacing:-.025em}
