@@ -84,6 +84,7 @@ section{max-width:1080px;margin:0 auto;padding:80px 24px}
 .modal .meta{font-size:13px;color:var(--ink3);margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid var(--line)}
 .modal .body p{font-family:var(--serif);font-size:15.5px;color:var(--ink2);margin-bottom:14px;text-align:justify}
 .modal .body h4{font-size:16px;margin:20px 0 8px;color:var(--ink)}
+.modal .work-detail-img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;margin:0 0 24px;border:1px solid var(--line)}
 
 /* ===== 作品 ===== */
 .w-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:36px;flex-wrap:wrap}
@@ -863,6 +864,15 @@ const METHODS = [
 ];
 
 const WORKS = [
+  {type:"image",cover:"assets/works/last-departure.png",useCover:true,title:"《离开之前》末日城市概念图",
+   desc:"一座停摆城市的清晨，一个人在出发前整理最后的物资。用安静的日常动作代替末日奇观。",
+   details:{
+    inspiration:"灵感来自“离开之前的最后一次整理”：不拍灾难爆发，而把故事放在风暴过后的清晨。空城、潮湿路面和逐渐侵入街道的植物提供时间感，人物低头整理后备箱，让宏大的末日背景落到一个克制的日常动作上。",
+    control:[
+     "先锁定叙事关系：空城占据大部分画面，车辆和人物压在右侧，利用道路消失点把视线从近景引向远处天际线。",
+     "再锁定氛围：冷灰色建筑与路面作为主色，低角度暖光只留在天空和反射中；湿路、枯叶与稀疏植被共同说明城市已经停摆了一段时间。",
+     "最后控制信息量：只保留一个人物、一辆主车和少量远景车辆，不加入爆炸、追逐等强情节。生成时按构图、光线、材质、细节逐层调整，避免一次改变太多变量。"
+    ]}},
   {type:"video",cover:"assets/works/city.jpg",title:"《一座城市的二十四小时》延时短片",
    desc:"从凌晨四点的环卫车到深夜写字楼的最后一盏灯，AI 生成的城市延时混剪。",
    file:"工具：生图定首帧+图生视频×18 | 思路：图片锁色调，视频只写运动 | 踩坑：夜景过曝，改写雨后反光"},
@@ -1029,11 +1039,33 @@ function illustration(index,cls,title){
   const box=panels[index];
   return `<svg class="${cls}" viewBox="${box.join(' ')}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="${title}"><image href="assets/illustrations/contemporary-mix.png" width="1536" height="1024" /></svg>`;
 }
+function workVisual(w){
+  if(w.useCover)return `<img class="w-img" src="${w.cover}" alt="${w.title}">`;
+  const index=WORKS.filter(item=>!item.useCover).indexOf(w);
+  return illustration(index,"w-img",w.title);
+}
+function openWorkModal(w){
+  document.getElementById("modal-inner").innerHTML=
+   `<span class="cat">AI 图片</span><h3>${w.title}</h3>
+    <div class="meta">作品说明 · 创作过程</div>
+    <img class="work-detail-img" src="${w.cover}" alt="${w.title}">
+    <div class="body"><h4>创作灵感</h4><p>${w.details.inspiration}</p>
+    <h4>如何控制画面</h4>${w.details.control.map(p=>`<p>${p}</p>`).join("")}</div>`;
+  document.getElementById("modal-mask").classList.add("open");
+  document.body.style.overflow="hidden";
+}
 function renderWorks(){
   const g=document.getElementById("w-grid");g.innerHTML="";
   WORKS.filter(w=>curW==="all"||w.type===curW).forEach(w=>{
-    const d=document.createElement("a");d.className="w-card";d.href="articles/example.html";d.setAttribute("aria-label",w.title+"：示例内容，待补充");
-    d.innerHTML=`<div class="w-thumb">${illustration(WORKS.indexOf(w),'w-img',w.title)}<span class="type-badge">${typeName[w.type]}</span></div>
+    const d=document.createElement(w.details?"div":"a");d.className="w-card";
+    if(w.details){
+      d.setAttribute("role","button");d.tabIndex=0;d.setAttribute("aria-label",`查看作品：${w.title}`);
+      d.onclick=()=>openWorkModal(w);
+      d.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();openWorkModal(w)}};
+    }else{
+      d.href="articles/example.html";d.setAttribute("aria-label",w.title+"：示例内容，待补充");
+    }
+    d.innerHTML=`<div class="w-thumb">${workVisual(w)}<span class="type-badge">${typeName[w.type]}</span></div>
     <div class="w-body"><h3>${w.title}</h3><p>${w.desc}</p></div>`;
     g.appendChild(d);
   });
