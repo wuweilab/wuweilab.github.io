@@ -555,11 +555,12 @@ a.m-card,a.r-card{display:block}a.m-card:focus-visible,a.r-card:focus-visible{ou
 .writing-archive-grid{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
 .writing-archive-grid[hidden]{display:none}
 #r-grid .writing-archive-grid .writing-secondary{grid-column:auto;min-height:250px}
+#r-grid .writing-archive-grid .writing-secondary:last-child:nth-child(odd){grid-column:1/-1;width:calc(50% - 10px);justify-self:center}
 .writing-bottom{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:24px;margin-top:auto;font-size:11px;color:var(--accent-deep)}
 .writing-illustration{margin:24px 0 0;flex:1;display:flex;align-items:center}
 .writing-illustration img{display:block;width:100%;height:auto;aspect-ratio:2 / 1;object-fit:cover;object-position:center;border-radius:4px}
 @media(max-width:800px) and (min-width:641px){#r-grid{gap:16px;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)}#r-grid .writing-secondary{padding:20px}.writing-copy{padding:22px}.writing-cover{padding:18px 18px 0}#r-grid .writing-secondary h3{font-size:17px}}
-@media(max-width:800px){.writing-archive-grid{grid-template-columns:1fr}}
+@media(max-width:800px){.writing-archive-grid{grid-template-columns:1fr}#r-grid .writing-archive-grid .writing-secondary:last-child:nth-child(odd){grid-column:1;width:100%}}
 @media(max-width:640px){#r-grid{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;gap:16px}#r-grid .writing-featured,#r-grid .writing-secondary{grid-column:1;grid-row:auto}.writing-cover{padding:18px 18px 0}.writing-copy{padding:22px}#r-grid .writing-secondary{padding:22px}#r-grid .writing-featured h3{font-size:25px}#r-grid .writing-archive-grid .writing-secondary{min-height:0}}
 
 /* Article option A: copy on the left, complete image on the right. */
@@ -943,10 +944,11 @@ const DOMAINS = [
 
 /* 我正在研究什么 */
 const RESEARCH = [
-  {topic:"用AI做网页、生视频，先把规矩说在前面",stage:"已发布",since:"2026-09-06",pct:100,href:"articles/constraints-first.html",why:"从改网页、做视频到交代工作，用带孩子、带员工的类比，讲清楚边界、优先级与检查点该怎样提前确定。"},
+  {topic:"同一个巫山，为什么他拍的是电影，我拍的是游客照？",stage:"已发布",since:"2026-09-10",pct:100,href:"articles/wushan.html",why:"站在电影同款机位，我拍到的却只是游客照。问题不在设备，而在光、视线、人物与时间如何被选择。"},
   {topic:"选题被做烂了，视频还能怎么做？",stage:"已发布",since:"2026-09-06",pct:100,href:"articles/video-rhythm.html",why:"从三张咖啡海报出发，讨论如何安排信息、追问与细节，让熟悉的选题产生新的阅读和观看体验。"},
 
   {topic:"AI越聊越笨，先别急着补提示词",stage:"已发布",since:"2026-09-06",pct:100,href:"articles/context-rot.html",why:"为什么提示词越补越长，结果却越来越差？从甲方需求到上下文腐烂，用四个动作给 AI 一张能开工的工作台。"},
+  {topic:"用AI做网页、生视频，先把规矩说在前面",stage:"已发布",since:"2026-09-06",pct:100,href:"articles/constraints-first.html",why:"从改网页、做视频到交代工作，用带孩子、带员工的类比，讲清楚边界、优先级与检查点该怎样提前确定。"},
   {topic:"欧美纷纷放弃全面电动化，中国电车点错科技树？",stage:"已完成",since:"2026-09-06",pct:100,href:"articles/ev-technology-tree.html",why:"阿Test正经比比视频文稿校订版。从购车动机到能源结构，再到电动与氢能路线，修正转写错误，理顺表达与关键事实。"},
   {topic:"AI 短片的叙事节奏",stage:"攻坚期",since:"2026-07",pct:62,
    why:"单镜头生成已经不难，难的是让 10 个镜头讲一个有起伏的故事。正在拆解成熟短片的节拍结构，反推分镜提示词的写法。"},
@@ -1362,9 +1364,9 @@ RESEARCH.forEach((r,i)=>{
   }else{
     d.innerHTML=`<span class="writing-date">${r.stage} · 始于 ${r.since}</span><h3>${r.topic}</h3><p class="why">${r.why}</p><div class="writing-bottom"><span>${r.href?"阅读全文":"研究中"}</span><span>${r.href?"↗":r.pct+"%"}</span></div>`;
   }
-  if(r.href==="articles/constraints-first.html"){
+  if(r.href==="articles/wushan.html"){
     const summary=d.querySelector('.why');
-    summary.insertAdjacentHTML('afterend','<figure class="writing-illustration"><img src="assets/articles/constraints-first/creative-worktable.png" width="1536" height="1024" alt="暖米色工作台上，规则清单与网页草稿、视频分镜整齐摆放" loading="lazy"></figure>');
+    summary.insertAdjacentHTML('afterend','<figure class="writing-illustration"><img src="assets/articles/wushan/user-figure.jpg" width="2000" height="1500" alt="作者在巫山江边拍摄的人物与山水" loading="lazy"></figure>');
   }
   (i<3?rg:researchArchive).appendChild(d);
 });
