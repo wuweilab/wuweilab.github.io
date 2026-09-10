@@ -552,11 +552,15 @@ a.m-card,a.r-card{display:block}a.m-card:focus-visible,a.r-card:focus-visible{ou
 #r-grid .writing-secondary{grid-column:2;display:flex;flex-direction:column;padding:26px}
 #r-grid .writing-secondary h3{font-size:19px;line-height:1.5;font-weight:400;margin-bottom:12px}
 #r-grid .writing-secondary .why{font-size:13px;line-height:1.9}
+.writing-archive-grid{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.writing-archive-grid[hidden]{display:none}
+#r-grid .writing-archive-grid .writing-secondary{grid-column:auto;min-height:250px}
 .writing-bottom{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:24px;margin-top:auto;font-size:11px;color:var(--accent-deep)}
 .writing-illustration{margin:24px 0 0;flex:1;display:flex;align-items:center}
 .writing-illustration img{display:block;width:100%;height:auto;aspect-ratio:2 / 1;object-fit:cover;object-position:center;border-radius:4px}
 @media(max-width:800px) and (min-width:641px){#r-grid{gap:16px;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)}#r-grid .writing-secondary{padding:20px}.writing-copy{padding:22px}.writing-cover{padding:18px 18px 0}#r-grid .writing-secondary h3{font-size:17px}}
-@media(max-width:640px){#r-grid{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;gap:16px}#r-grid .writing-featured,#r-grid .writing-secondary{grid-column:1;grid-row:auto}.writing-cover{padding:18px 18px 0}.writing-copy{padding:22px}#r-grid .writing-secondary{padding:22px}#r-grid .writing-featured h3{font-size:25px}}
+@media(max-width:800px){.writing-archive-grid{grid-template-columns:1fr}}
+@media(max-width:640px){#r-grid{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;gap:16px}#r-grid .writing-featured,#r-grid .writing-secondary{grid-column:1;grid-row:auto}.writing-cover{padding:18px 18px 0}.writing-copy{padding:22px}#r-grid .writing-secondary{padding:22px}#r-grid .writing-featured h3{font-size:25px}#r-grid .writing-archive-grid .writing-secondary{min-height:0}}
 
 /* Article option A: copy on the left, complete image on the right. */
 #r-grid .writing-horizontal{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);align-items:center;gap:22px;padding:26px}
@@ -642,6 +646,7 @@ a.m-card,a.r-card{display:block}a.m-card:focus-visible,a.r-card:focus-visible{ou
     <p>最近完成的文章与正在研究的选题，记录从问题、尝试到形成方法的过程。</p>
   </div>
   <div class="r-grid rv" id="r-grid"></div>
+  <div class="more-wrap" id="r-more" style="display:none"><button class="more-btn" id="r-more-btn" type="button" aria-expanded="false" aria-controls="r-archive">展开全部</button></div>
 </section>
 
 <!-- 精选AI方法 -->
@@ -1342,8 +1347,11 @@ buildTree();layoutAll(true);renderPanel();
 
 // 我正在研究什么
 const rg=document.getElementById("r-grid");
-// 展示最新文章与两个研究方向，其他草稿继续保留在 RESEARCH 数据中。
-RESEARCH.slice(0,3).forEach((r,i)=>{
+const researchArchive=document.createElement("div");
+researchArchive.className="writing-archive-grid";
+researchArchive.id="r-archive";
+researchArchive.hidden=true;
+RESEARCH.forEach((r,i)=>{
   const d=document.createElement(r.href?"a":"div");
   d.className="r-card "+(i===0?"writing-featured":"writing-secondary");
   if(r.href==="articles/video-rhythm.html")d.classList.add('writing-horizontal');
@@ -1358,9 +1366,21 @@ RESEARCH.slice(0,3).forEach((r,i)=>{
     const summary=d.querySelector('.why');
     summary.insertAdjacentHTML('afterend','<figure class="writing-illustration"><img src="assets/articles/constraints-first/creative-worktable.png" width="1536" height="1024" alt="暖米色工作台上，规则清单与网页草稿、视频分镜整齐摆放" loading="lazy"></figure>');
   }
-  rg.appendChild(d);
+  (i<3?rg:researchArchive).appendChild(d);
 });
-
+if(researchArchive.children.length){
+  rg.appendChild(researchArchive);
+  const researchMore=document.getElementById("r-more");
+  const researchMoreBtn=document.getElementById("r-more-btn");
+  researchMore.style.display="";
+  const setResearchOpen=open=>{
+    researchArchive.hidden=!open;
+    researchMoreBtn.setAttribute("aria-expanded",String(open));
+    researchMoreBtn.textContent=open?"收起 ↑":"展开全部 · 共 "+RESEARCH.length+" 项";
+  };
+  researchMoreBtn.addEventListener("click",()=>setResearchOpen(researchArchive.hidden));
+  setResearchOpen(false);
+}
 // 常用工具组合
 const tg=document.getElementById("tools-grid");
 COMBOS.forEach(c=>{
