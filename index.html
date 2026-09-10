@@ -556,11 +556,14 @@ a.m-card,a.r-card{display:block}a.m-card:focus-visible,a.r-card:focus-visible{ou
 .writing-archive-grid[hidden]{display:none}
 #r-grid .writing-archive-grid .writing-secondary{grid-column:auto;min-height:250px}
 #r-grid .writing-archive-grid .writing-secondary:last-child:nth-child(odd){grid-column:1/-1;width:calc(50% - 10px);justify-self:center}
+#r-grid.writing-filter-results{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto}
+#r-grid.writing-filter-results .writing-secondary{grid-column:auto;min-height:250px}
+#r-grid.writing-filter-results .writing-secondary:last-child:nth-child(odd){grid-column:1/-1;width:calc(50% - 10px);justify-self:center}
 .writing-bottom{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:24px;margin-top:auto;font-size:11px;color:var(--accent-deep)}
 .writing-illustration{margin:24px 0 0;flex:1;display:flex;align-items:center}
 .writing-illustration img{display:block;width:100%;height:auto;aspect-ratio:2 / 1;object-fit:cover;object-position:center;border-radius:4px}
 @media(max-width:800px) and (min-width:641px){#r-grid{gap:16px;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)}#r-grid .writing-secondary{padding:20px}.writing-copy{padding:22px}.writing-cover{padding:18px 18px 0}#r-grid .writing-secondary h3{font-size:17px}}
-@media(max-width:800px){.writing-archive-grid{grid-template-columns:1fr}#r-grid .writing-archive-grid .writing-secondary:last-child:nth-child(odd){grid-column:1;width:100%}}
+@media(max-width:800px){.writing-archive-grid,#r-grid.writing-filter-results{grid-template-columns:1fr}#r-grid .writing-archive-grid .writing-secondary:last-child:nth-child(odd),#r-grid.writing-filter-results .writing-secondary:last-child:nth-child(odd){grid-column:1;width:100%}}
 @media(max-width:640px){#r-grid{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;gap:16px}#r-grid .writing-featured,#r-grid .writing-secondary{grid-column:1;grid-row:auto}.writing-cover{padding:18px 18px 0}.writing-copy{padding:22px}#r-grid .writing-secondary{padding:22px}#r-grid .writing-featured h3{font-size:25px}#r-grid .writing-archive-grid .writing-secondary{min-height:0}}
 
 /* Article option A: copy on the left, complete image on the right. */
@@ -646,6 +649,7 @@ a.m-card,a.r-card{display:block}a.m-card:focus-visible,a.r-card:focus-visible{ou
     <h2>正在写的</h2>
     <p>最近完成的文章与正在研究的选题，记录从问题、尝试到形成方法的过程。</p>
   </div>
+  <div class="filters writing-filters rv" id="r-filters" aria-label="正在写的分类筛选"></div>
   <div class="r-grid rv" id="r-grid"></div>
   <div class="more-wrap" id="r-more" style="display:none"><button class="more-btn" id="r-more-btn" type="button" aria-expanded="false" aria-controls="r-archive">展开全部</button></div>
 </section>
@@ -944,17 +948,17 @@ const DOMAINS = [
 
 /* 我正在研究什么 */
 const RESEARCH = [
-  {topic:"同一个巫山，为什么他拍的是电影，我拍的是游客照？",stage:"已发布",since:"2026-09-10",pct:100,href:"articles/wushan.html",why:"站在电影同款机位，我拍到的却只是游客照。问题不在设备，而在光、视线、人物与时间如何被选择。"},
-  {topic:"选题被做烂了，视频还能怎么做？",stage:"已发布",since:"2026-09-06",pct:100,href:"articles/video-rhythm.html",why:"从三张咖啡海报出发，讨论如何安排信息、追问与细节，让熟悉的选题产生新的阅读和观看体验。"},
+  {cat:"影像创作",topic:"同一个巫山，为什么他拍的是电影，我拍的是游客照？",stage:"已发布",since:"2026-09-10",pct:100,href:"articles/wushan.html",why:"站在电影同款机位，我拍到的却只是游客照。问题不在设备，而在光、视线、人物与时间如何被选择。"},
+  {cat:"内容创作",topic:"选题被做烂了，视频还能怎么做？",stage:"已发布",since:"2026-09-06",pct:100,href:"articles/video-rhythm.html",why:"从三张咖啡海报出发，讨论如何安排信息、追问与细节，让熟悉的选题产生新的阅读和观看体验。"},
 
-  {topic:"AI越聊越笨，先别急着补提示词",stage:"已发布",since:"2026-09-06",pct:100,href:"articles/context-rot.html",why:"为什么提示词越补越长，结果却越来越差？从甲方需求到上下文腐烂，用四个动作给 AI 一张能开工的工作台。"},
-  {topic:"用AI做网页、生视频，先把规矩说在前面",stage:"已发布",since:"2026-09-06",pct:100,href:"articles/constraints-first.html",why:"从改网页、做视频到交代工作，用带孩子、带员工的类比，讲清楚边界、优先级与检查点该怎样提前确定。"},
-  {topic:"欧美纷纷放弃全面电动化，中国电车点错科技树？",stage:"已完成",since:"2026-09-06",pct:100,href:"articles/ev-technology-tree.html",why:"阿Test正经比比视频文稿校订版。从购车动机到能源结构，再到电动与氢能路线，修正转写错误，理顺表达与关键事实。"},
-  {topic:"AI 短片的叙事节奏",stage:"攻坚期",since:"2026-07",pct:62,
+  {cat:"AI方法",topic:"AI越聊越笨，先别急着补提示词",stage:"已发布",since:"2026-09-06",pct:100,href:"articles/context-rot.html",why:"为什么提示词越补越长，结果却越来越差？从甲方需求到上下文腐烂，用四个动作给 AI 一张能开工的工作台。"},
+  {cat:"AI方法",topic:"用AI做网页、生视频，先把规矩说在前面",stage:"已发布",since:"2026-09-06",pct:100,href:"articles/constraints-first.html",why:"从改网页、做视频到交代工作，用带孩子、带员工的类比，讲清楚边界、优先级与检查点该怎样提前确定。"},
+  {cat:"商业观察",topic:"欧美纷纷放弃全面电动化，中国电车点错科技树？",stage:"已完成",since:"2026-09-06",pct:100,href:"articles/ev-technology-tree.html",why:"阿Test正经比比视频文稿校订版。从购车动机到能源结构，再到电动与氢能路线，修正转写错误，理顺表达与关键事实。"},
+  {cat:"影像创作",topic:"AI 短片的叙事节奏",stage:"攻坚期",since:"2026-07",pct:62,
    why:"单镜头生成已经不难，难的是让 10 个镜头讲一个有起伏的故事。正在拆解成熟短片的节拍结构，反推分镜提示词的写法。"},
-  {topic:"多模型协作的分工边界",stage:"进行中",since:"2026-08",pct:35,
+  {cat:"AI方法",topic:"多模型协作的分工边界",stage:"进行中",since:"2026-08",pct:35,
    why:"发散、砍方案、执行分别交给不同模型，收益明显但边界模糊。想找到一套稳定的「模型分工表」，而不是每次凭感觉派活。"},
-  {topic:"AI 内容的事实核查流水线",stage:"进行中",since:"2026-08",pct:28,
+  {cat:"AI方法",topic:"AI 内容的事实核查流水线",stage:"进行中",since:"2026-08",pct:28,
    why:"口播稿里每个数字都要查一手出处，人工查太慢。正在试验「AI 初筛 + 定向检索 + 人工终审」的三级核查流程。"}
 ];
 
@@ -1349,40 +1353,83 @@ buildTree();layoutAll(true);renderPanel();
 
 // 我正在研究什么
 const rg=document.getElementById("r-grid");
-const researchArchive=document.createElement("div");
-researchArchive.className="writing-archive-grid";
-researchArchive.id="r-archive";
-researchArchive.hidden=true;
-RESEARCH.forEach((r,i)=>{
+const researchFilters=document.getElementById("r-filters");
+const researchMore=document.getElementById("r-more");
+const researchMoreBtn=document.getElementById("r-more-btn");
+const researchCategories=["全部","AI方法","影像创作","内容创作","商业观察"];
+let currentResearchCategory="全部";
+
+function buildResearchCard(r,i,isOverview){
   const d=document.createElement(r.href?"a":"div");
-  d.className="r-card "+(i===0?"writing-featured":"writing-secondary");
-  if(r.href==="articles/video-rhythm.html")d.classList.add('writing-horizontal');
-  if(r.href)d.href=r.href;
-  if(i===0||r.href==="articles/video-rhythm.html"){
-    d.innerHTML=`${r.href==="articles/video-rhythm.html"?'<div class="writing-cover"><img src="assets/articles/video-rhythm/coffee-posters.png" width="1536" height="1024" alt="虚构咖啡品牌海报"></div>':""}
-      <div class="writing-copy"><time class="writing-date" datetime="${r.since}">发布于 ${r.since}</time><h3>${r.topic}</h3><p class="why">${r.why}</p><div class="writing-bottom"><span>阅读全文</span><span aria-hidden="true">↗</span></div></div>`;
+  d.className="r-card "+(isOverview?(i===0?"writing-featured":"writing-secondary"):"writing-secondary");
+  if(isOverview&&r.href==="articles/video-rhythm.html")d.classList.add("writing-horizontal");
+  if(r.href){d.href=r.href;d.setAttribute("aria-label",r.topic+"，阅读全文");}
+  if(isOverview&&(i===0||r.href==="articles/video-rhythm.html")){
+    const cover=r.href==="articles/video-rhythm.html"?'<div class="writing-cover"><img src="assets/articles/video-rhythm/coffee-posters.png" width="1536" height="1024" alt="虚构咖啡品牌海报"></div>':"";
+    d.innerHTML=cover+'<div class="writing-copy"><time class="writing-date" datetime="'+r.since+'">发布于 '+r.since+'</time><h3>'+r.topic+'</h3><p class="why">'+r.why+'</p><div class="writing-bottom"><span>阅读全文</span><span aria-hidden="true">↗</span></div></div>';
   }else{
-    d.innerHTML=`<span class="writing-date">${r.stage} · 始于 ${r.since}</span><h3>${r.topic}</h3><p class="why">${r.why}</p><div class="writing-bottom"><span>${r.href?"阅读全文":"研究中"}</span><span>${r.href?"↗":r.pct+"%"}</span></div>`;
+    d.innerHTML='<span class="writing-date">'+r.stage+' · 始于 '+r.since+'</span><h3>'+r.topic+'</h3><p class="why">'+r.why+'</p><div class="writing-bottom"><span>'+(r.href?"阅读全文":"研究中")+'</span><span>'+(r.href?"↗":r.pct+"%")+'</span></div>';
   }
-  if(r.href==="articles/wushan.html"){
-    const summary=d.querySelector('.why');
-    summary.insertAdjacentHTML('afterend','<figure class="writing-illustration"><img src="assets/articles/wushan/user-figure.jpg" width="2000" height="1500" alt="作者在巫山江边拍摄的人物与山水" loading="lazy"></figure>');
+  if(isOverview&&r.href==="articles/wushan.html"){
+    const summary=d.querySelector(".why");
+    summary.insertAdjacentHTML("afterend",'<figure class="writing-illustration"><img src="assets/articles/wushan/user-figure.jpg" width="2000" height="1500" alt="作者在巫山江边拍摄的人物与山水" loading="lazy"></figure>');
   }
-  (i<3?rg:researchArchive).appendChild(d);
-});
-if(researchArchive.children.length){
-  rg.appendChild(researchArchive);
-  const researchMore=document.getElementById("r-more");
-  const researchMoreBtn=document.getElementById("r-more-btn");
-  researchMore.style.display="";
-  const setResearchOpen=open=>{
-    researchArchive.hidden=!open;
-    researchMoreBtn.setAttribute("aria-expanded",String(open));
-    researchMoreBtn.textContent=open?"收起 ↑":"展开全部 · 共 "+RESEARCH.length+" 项";
-  };
-  researchMoreBtn.addEventListener("click",()=>setResearchOpen(researchArchive.hidden));
-  setResearchOpen(false);
+  return d;
 }
+
+function setResearchOpen(open,archive,total){
+  archive.hidden=!open;
+  researchMoreBtn.setAttribute("aria-expanded",String(open));
+  researchMoreBtn.textContent=open?"收起 ↑":"展开全部 · 共 "+total+" 项";
+}
+
+function renderResearch(){
+  const filtered=RESEARCH.filter(r=>currentResearchCategory==="全部"||r.cat===currentResearchCategory);
+  const isOverview=currentResearchCategory==="全部";
+  rg.innerHTML="";
+  rg.classList.toggle("writing-filter-results",!isOverview);
+  researchMoreBtn.onclick=null;
+  researchMoreBtn.setAttribute("aria-expanded","false");
+
+  if(isOverview){
+    const archive=document.createElement("div");
+    archive.className="writing-archive-grid";
+    archive.id="r-archive";
+    archive.hidden=true;
+    filtered.forEach((r,i)=>(i<3?rg:archive).appendChild(buildResearchCard(r,i,true)));
+    if(archive.children.length){
+      rg.appendChild(archive);
+      researchMore.style.display="";
+      researchMoreBtn.onclick=()=>setResearchOpen(archive.hidden,archive,filtered.length);
+      setResearchOpen(false,archive,filtered.length);
+    }else{
+      researchMore.style.display="none";
+    }
+  }else{
+    filtered.forEach((r,i)=>rg.appendChild(buildResearchCard(r,i,false)));
+    researchMore.style.display="none";
+  }
+}
+
+researchCategories.forEach(c=>{
+  const b=document.createElement("button");
+  b.type="button";
+  b.className="chip"+(c===currentResearchCategory?" on":"");
+  b.textContent=c;
+  b.setAttribute("aria-pressed",String(c===currentResearchCategory));
+  b.onclick=()=>{
+    currentResearchCategory=c;
+    [...researchFilters.children].forEach(x=>{
+      const active=x===b;
+      x.classList.toggle("on",active);
+      x.setAttribute("aria-pressed",String(active));
+    });
+    renderResearch();
+  };
+  researchFilters.appendChild(b);
+});
+renderResearch();
+
 // 常用工具组合
 const tg=document.getElementById("tools-grid");
 COMBOS.forEach(c=>{
