@@ -325,12 +325,12 @@ nav{background:rgba(244,240,232,.96);backdrop-filter:none;border-bottom:1px soli
 .nav-inner{max-width:1180px;padding:20px 28px}
 .logo{font-family:var(--serif);font-size:18px;letter-spacing:.06em;color:var(--ink)}
 .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
-.logo{align-items:flex-end;gap:30px}
-.wu-wordmark{display:inline-flex;align-items:baseline;font:700 30px/.85 Georgia,"Times New Roman",serif;letter-spacing:-3px;color:var(--accent-deep);white-space:nowrap}
+.logo{align-items:flex-end;gap:8px}
+.wu-wordmark{display:inline-flex;align-items:baseline;padding-right:22px;font:700 30px/.85 Georgia,"Times New Roman",serif;letter-spacing:-3px;color:var(--accent-deep);white-space:nowrap}
 .wu-letter-u{position:relative;display:inline-block}
 .wu-letter-u i{position:absolute;right:-14px;top:auto;bottom:0;transform:none;width:8px;height:8px;border-radius:1px;background:var(--accent)}
-.logo>.wu-wordmark>b,.logo>.wu-wordmark>.wu-letter-u{transform:translateY(2px)}
-.logo>.wu-wordmark>.wu-letter-u i{bottom:2px}
+.wu-wordmark>b,.wu-wordmark>.wu-letter-u{transform:translateY(2px)}
+.wu-wordmark>.wu-letter-u i{bottom:2px}
 .logo-copy{display:flex;align-items:flex-end;letter-spacing:0}
 .logo-copy strong{font-family:var(--sans);font-size:15px;line-height:1;font-weight:300;letter-spacing:.12em;color:var(--ink);white-space:nowrap}
 .hero .tag,.sec-head .en,.logo-copy small{font-family:var(--mono)}
@@ -504,7 +504,6 @@ footer{color:var(--ink3);padding:56px 24px}
 .hstat .num,.m-card h3,.modal h3,.w-body h3,.combo-head h3,.r-card h3,
 .combo-tool b,.a-contact .val,.mu-name,.mb-title,footer .fl{font-weight:400}
 footer .fl{display:flex;align-items:baseline;gap:4px;font-family:var(--sans);font-weight:300}
-footer .footer-wu{font:700 18px/1 Georgia,"Times New Roman",serif;letter-spacing:-1.8px;color:var(--accent-deep)}
 .m-card .cat,.modal .cat,.r-card .stage,.kp-tag,.kp-next .l,.kp-skills h4{font-weight:400}
 .about-quote{font-family:var(--sans);font-weight:300}
 .kp-title{font-family:var(--sans);font-weight:400}
@@ -750,7 +749,7 @@ a.m-card,a.r-card{display:block}a.m-card:focus-visible,a.r-card:focus-visible{ou
 <footer id="about">
   <div class="footer-inner">
   <div class="footer-copy">
-  <div class="fl"><span class="footer-wu">WU</span><span>的实践笔记</span></div>
+  <div class="fl"><span class="wu-wordmark" aria-label="WU"><b>W</b><span class="wu-letter-u">U<i aria-hidden="true"></i></span></span><span>的实践笔记</span></div>
   <div>内容创作、品牌建设与 AI 实践 · 记录实测可复用的经验</div>
   </div>
   <ul class="about-contacts" id="about-contacts"></ul>
