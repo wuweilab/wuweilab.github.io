@@ -332,7 +332,7 @@ nav{background:rgba(244,240,232,.96);backdrop-filter:none;border-bottom:1px soli
 .logo>.wu-wordmark>b,.logo>.wu-wordmark>.wu-letter-u{transform:translateY(2px)}
 .logo>.wu-wordmark>.wu-letter-u i{bottom:2px}
 .logo-copy{display:flex;align-items:flex-end;letter-spacing:0}
-.logo-copy strong{font-family:var(--sans);font-size:15px;line-height:1;font-weight:300;letter-spacing:.12em;color:var(--ink)}
+.logo-copy strong{font-family:var(--sans);font-size:15px;line-height:1;font-weight:300;letter-spacing:.12em;color:var(--ink);white-space:nowrap}
 .hero .tag,.sec-head .en,.logo-copy small{font-family:var(--mono)}
 .nav-links{gap:30px;font-size:13px;font-weight:300;color:var(--ink2)}
 .nav-links a{position:relative}
@@ -514,13 +514,11 @@ footer .footer-wu{font:700 18px/1 Georgia,"Times New Roman",serif;letter-spacing
   .hero{min-height:auto;padding-top:78px}
 }
 @media(max-width:719px){
-  .nav-inner{padding:14px 18px}
-  .logo{gap:25px}
-  .wu-wordmark{font-size:22px}
+  .wu-wordmark{font-size:22px;padding-right:20px}
   .wu-letter-u i{right:-12px;bottom:0;width:7px;height:7px}
   .logo-copy strong{font-size:11px;letter-spacing:.04em}
   .nav-inner{gap:12px;padding:13px 16px;flex-wrap:wrap}
-  .logo{gap:25px;flex-shrink:0}
+  .logo{gap:6px;flex:0 0 auto;min-width:max-content}
   .nav-links{gap:11px;font-size:11px;overflow:visible;flex-wrap:wrap}
   .nav-links a{display:block;white-space:nowrap}
   .hero{padding:68px 18px 0}
@@ -535,6 +533,10 @@ footer .footer-wu{font:700 18px/1 Georgia,"Times New Roman",serif;letter-spacing
   .sec-head h2{font-size:29px}
   .m-card,.combo,.r-card{padding:16px}
   .music-bar{border-radius:2px}
+}
+@media(max-width:520px){
+  .nav-inner{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+  .nav-links{display:grid;grid-template-columns:repeat(5,max-content);width:100%;min-width:0;justify-content:space-between;gap:0;padding-top:1px}
 }
 a.m-card,a.r-card{display:block}a.m-card:focus-visible,a.r-card:focus-visible{outline:2px solid var(--accent-deep);outline-offset:5px}.r-card.published{grid-column:1/-1;border-left:3px solid var(--accent)}.r-card.published .r-prog{max-width:320px}.r-card.published .track{display:none}
 
