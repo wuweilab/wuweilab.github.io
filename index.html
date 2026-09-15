@@ -380,7 +380,7 @@ nav{background:rgba(244,240,232,.96);backdrop-filter:none;border-bottom:1px soli
 .hstat .num{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--ink)}
 .hstat .num em{color:var(--accent-deep)}
 .hstat .lab{font-size:11px;color:var(--ink3);letter-spacing:.08em}
-section{max-width:1120px;padding:0 28px 64px}
+section{max-width:1120px;padding:0 28px 64px;scroll-margin-top:78px}
 #research{padding-top:48px}
 #research .sec-head{padding-top:0;border-top:0}
 .sec-head{text-align:left;margin-bottom:32px;padding-top:48px;border-top:1px solid var(--line)}
@@ -535,7 +535,8 @@ footer .fl{display:flex;align-items:baseline;gap:4px;font-family:var(--sans);fon
 }
 @media(max-width:520px){
   .nav-inner{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
-  .nav-links{display:grid;grid-template-columns:repeat(5,max-content);width:100%;min-width:0;justify-content:space-between;gap:0;padding-top:1px}
+  .nav-links{display:grid;grid-template-columns:repeat(6,max-content);width:100%;min-width:0;justify-content:space-between;gap:0;padding-top:1px}
+  section{scroll-margin-top:88px}
 }
 a.m-card,a.r-card{display:block}a.m-card:focus-visible,a.r-card:focus-visible{outline:2px solid var(--accent-deep);outline-offset:5px}.r-card.published{grid-column:1/-1;border-left:3px solid var(--accent)}.r-card.published .r-prog{max-width:320px}.r-card.published .track{display:none}
 
@@ -619,7 +620,7 @@ a.m-card,a.r-card{display:block}a.m-card:focus-visible,a.r-card:focus-visible{ou
       <span class="logo-copy"><strong>实践笔记</strong></span>
     </a>
     <div class="nav-links">
-      <a href="#about">关于</a><a href="#methods">笔记</a><a href="#works">作品</a><a href="#map">知识树</a><a href="#tools">工具</a>
+      <a href="#about">关于</a><a href="#content">内容</a><a href="#methods">方法</a><a href="#works">作品</a><a href="#map">知识树</a><a href="#tools">工具</a>
     </div>
   </div>
 </nav>
@@ -653,6 +654,18 @@ a.m-card,a.r-card{display:block}a.m-card:focus-visible,a.r-card:focus-visible{ou
   <div class="filters writing-filters rv" id="r-filters" aria-label="正在写的分类筛选"></div>
   <div class="r-grid rv" id="r-grid"></div>
   <div class="more-wrap" id="r-more" style="display:none"><button class="more-btn" id="r-more-btn" type="button" aria-expanded="false" aria-controls="r-archive">展开全部</button></div>
+</section>
+
+<!-- 内容即品牌 -->
+<section id="content">
+  <div class="sec-head rv">
+    <div class="en">Content &amp; Brand</div>
+    <h2>内容即品牌</h2>
+    <p>内容不只是一次表达，也是别人认识你的方式。记录选题、叙事、观点与长期品牌建设中的实践。</p>
+  </div>
+  <div class="filters rv" id="c-filters" aria-label="内容即品牌分类筛选"></div>
+  <div class="m-grid" id="c-grid"></div>
+  <div class="more-wrap" id="c-more" style="display:none"><button class="more-btn" id="c-more-btn" type="button" aria-expanded="false">展开全部</button></div>
 </section>
 
 <!-- 精选AI方法 -->
@@ -809,6 +822,17 @@ a.m-card,a.r-card{display:block}a.m-card:focus-visible,a.r-card:focus-visible{ou
 
 <script>
 /* ============ 数据（示例内容，后续可随时替换） ============ */
+const CONTENTS = [
+  {id:8,cat:"观点表达",title:"AI越懂你，你可能越危险",date:"2026-09-15",read:6,href:"articles/ai-sycophancy.html",brief:"AI为什么总说你没错？从社会性谄媚、动机性推理和人类反馈训练，理解赞同如何悄悄改变判断。"},
+  {id:7,cat:"视觉叙事",title:"同一个巫山，为什么他拍的是电影，我拍的是游客照？",date:"2026-09-10",read:8,href:"articles/wushan.html",brief:"从两组巫山影像出发，拆解故事、光线、空间、色彩、瞬间与质感是怎样被安排出来的。"},
+  {id:6,cat:"选题策划",title:"选题被做烂了，视频还能怎么做？",date:"2026-09-06",read:6,href:"articles/video-rhythm.html",brief:"熟悉的题目也能重新成立。关键是重新安排信息、追问和细节，让观众获得新的观看体验。"},
+  {id:5,cat:"品牌策略",title:"内容不是流量的燃料，是品牌的证词",date:"2026-08",read:4,brief:"一条内容可能很快被刷走，但持续表达的判断、趣味和标准，会慢慢拼成别人对你的整体印象。",body:[`流量回答的是「有多少人看见」，品牌回答的是「看见之后记住什么」。如果每次追热点都换一种口吻、立场和审美，数据也许会波动上涨，观众却很难说清你是谁。`,`把内容当品牌来做，需要先确定几个长期不变的东西：你持续解决哪类问题，你愿意坚持什么判断，你用什么方式把复杂的事讲清楚。选题可以变化，这些底层承诺不能每周重写。`,`判断一条内容值不值得做，可以多问一句：它除了贡献一次播放，还为长期认知增加了什么？能留下一个清晰印象，才不只是消耗品。`]},
+  {id:4,cat:"品牌策略",title:"人设不是标签，是反复兑现的预期",date:"2026-08",read:4,brief:"真正稳定的人设不靠简介里的三个形容词，而靠观众多次看完内容后，对你形成的可靠预期。",body:[`「专业」「真诚」「有趣」写在简介里都不值钱，因为任何人都能写。观众真正相信的人设，来自一次次可验证的体验：你是否查清资料，是否承认不知道，是否在该严肃时严肃、该松弛时松弛。`,`人设更像一种内容契约。观众点进来之前，已经大致知道会得到什么，也知道你不会用什么方式糊弄他。这种确定性，才会变成长期信任。`,`与其设计十个标签，不如选择两三件愿意长期兑现的小事。时间会替你把它们变成品牌。`]},
+  {id:3,cat:"选题策划",title:"好选题要同时回答三个问题",date:"2026-07",read:3,brief:"为什么是这件事，为什么是现在，为什么值得由你来讲。三个问题缺一个，内容都容易失去支点。",body:[`一个话题很热，不等于它适合你。先回答「为什么是这件事」，确认它触碰了真实问题；再回答「为什么是现在」，找到时间窗口；最后回答「为什么由你来讲」，明确自己的经验、材料或独特观察。`,`前两个问题决定内容有没有公共价值，最后一个问题决定它会不会泯然众人。缺少个人支点的热点复述，常常看起来正确，却没有记忆点。`,`选题会上，把这三个答案各写成一句话。任何一句写不出来，就先别急着开工。`]},
+  {id:2,cat:"视觉叙事",title:"画面好看之前，先让它有事发生",date:"2026-07",read:4,brief:"光影和构图只能让人停一秒，人物、关系与变化才能让画面在观众心里继续发生。",body:[`许多视觉内容的问题不在于不精致，而在于只剩精致。漂亮的风景、准确的色调、电影感颗粒都有了，观众却不知道自己正在看什么。`,`让画面有叙事，可以从三个小问题开始：谁在这里，他刚刚经历了什么，下一秒可能发生什么。画面不必把答案全部说完，但要留下足够具体的线索。`,`审美负责把人留下，故事负责让人记住。两者结合，画面才会从素材变成内容。`]},
+  {id:1,cat:"观点表达",title:"观点要尖，证据要硬",date:"2026-06",read:4,brief:"有传播力的表达需要明确判断，也需要经得住追问。锋利不是把话说满，而是把依据说透。",body:[`观点太软，读者看完不知道你想说什么；观点太满，又容易把复杂问题压成一句口号。真正有力量的表达，是提出清晰判断，同时交代它成立的条件和边界。`,`写完之后做两次检查。第一次只看观点，能否用一句话复述；第二次只看证据，每个关键判断是否有事实、案例或经验支撑。`,`内容的辨识度来自判断，可信度来自证据。两样都在，才可能沉淀为品牌。`]}
+];
+
 const METHODS = [
   {id:14,cat:"提示词与工作流",title:"用AI做网页、生视频，先把规矩说在前面",date:"2026-09-06",read:7,href:"articles/constraints-first.html",formal:true,brief:"从改网页、做视频到交代工作，用带孩子、带员工的类比，讲清楚边界、优先级与检查点该怎样提前确定。"},
   {id:13,cat:"提示词与工作流",title:"AI越聊越笨，先别急着补提示词",date:"2026-09-06",read:5,href:"articles/context-rot.html",formal:true,brief:"提示词越补越长，结果却越来越差。从甲方需求到上下文腐烂，整理让长对话重新清晰的四个动作。"},
@@ -985,8 +1009,8 @@ const CONTACTS = [
 ];
 
 /* ============ 折叠逻辑：每区最多2行，超出折叠为「展开全部」 ============ */
-const ROWS=2,openState={m:false,w:false,t:false};
-const gridMap={m:"m-grid",w:"w-grid",t:"tools-grid"};
+const ROWS=2,openState={c:false,m:false,w:false,t:false};
+const gridMap={c:"c-grid",m:"m-grid",w:"w-grid",t:"tools-grid"};
 function gridCols(){return window.innerWidth>=720?3:2}
 function applyCollapse(key){
   const g=document.getElementById(gridMap[key]);if(!g)return;
@@ -996,11 +1020,34 @@ function applyCollapse(key){
   if(!wrap)return;
   if(items.length>vis){
     wrap.style.display="";
-    wrap.querySelector("button").textContent=openState[key]?"收起 ↑":"展开全部 · 共 "+items.length+" 项";
+    const button=wrap.querySelector("button");
+    button.textContent=openState[key]?"收起 ↑":"展开全部 · 共 "+items.length+" 项";
+    button.setAttribute("aria-expanded",String(openState[key]));
   }else wrap.style.display="none";
 }
 
 /* ============ 渲染 ============ */
+// 内容即品牌
+const contentCats = ["全部",...new Set(CONTENTS.map(item=>item.cat))];
+let curContentCat = "全部";
+const contentFilters = document.getElementById("c-filters");
+contentCats.forEach(cat=>{
+  const button=document.createElement("button");button.className="chip"+(cat===curContentCat?" on":"");button.textContent=cat;
+  button.onclick=()=>{curContentCat=cat;openState.c=false;[...contentFilters.children].forEach(item=>item.classList.toggle("on",item===button));renderContent();};
+  contentFilters.appendChild(button);
+});
+function renderContent(){
+  const grid=document.getElementById("c-grid");grid.innerHTML="";
+  CONTENTS.filter(item=>curContentCat==="全部"||item.cat===curContentCat).forEach(item=>{
+    const card=document.createElement(item.href?"a":"div");card.className="m-card";
+    if(item.href){card.href=item.href;card.setAttribute("aria-label",item.title+"，阅读全文");}
+    card.innerHTML=`<span class="cat">${item.cat}</span><h3>${item.title}</h3><p>${item.brief}</p><div class="meta"><span>${item.date}</span><span>约 ${item.read} 分钟${item.href?" ↗":""}</span></div>`;
+    if(!item.href)card.onclick=()=>openModal(item);grid.appendChild(card);
+  });
+  applyCollapse("c");
+}
+renderContent();
+
 // 方法论
 const cats = ["全部",...new Set(METHODS.map(m=>m.cat))];
 let curCat = "全部";
@@ -1453,10 +1500,10 @@ CONTACTS.forEach(c=>{
 });
 
 // 折叠按钮绑定与窗口尺寸变化重算
-["m","w","t"].forEach(k=>{
+["c","m","w","t"].forEach(k=>{
   document.getElementById(k+"-more-btn").onclick=()=>{openState[k]=!openState[k];applyCollapse(k)};
 });
-let rzT;window.addEventListener("resize",()=>{clearTimeout(rzT);rzT=setTimeout(()=>["m","w","t"].forEach(applyCollapse),150)});
+let rzT;window.addEventListener("resize",()=>{clearTimeout(rzT);rzT=setTimeout(()=>["c","m","w","t"].forEach(applyCollapse),150)});
 
 /* ===== 隐藏发布平台注入的品牌栏与右下角浮标 ===== */
 document.addEventListener("DOMContentLoaded",()=>{setTimeout(()=>{
