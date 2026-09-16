@@ -1415,7 +1415,7 @@ function buildResearchCard(r,i,isOverview){
   if(isOverview&&r.href==="articles/video-rhythm.html")d.classList.add("writing-horizontal");
   if(r.href){d.href=r.href;d.setAttribute("aria-label",r.topic+"，阅读全文");}
   if(isOverview&&(i===0||r.href==="articles/video-rhythm.html")){
-    const cover=r.href==="articles/video-rhythm.html"?'<div class="writing-cover"><img src="assets/articles/video-rhythm/coffee-posters.png" width="1536" height="1024" alt="同一咖啡杯的三种冲突视觉风格"></div>':"";
+    const cover=r.href==="articles/video-rhythm.html"?'<div class="writing-cover"><img src="assets/articles/video-rhythm/coffee-posters.png?v=2" width="1536" height="1024" alt="同一咖啡杯的三种冲突视觉风格"></div>':"";
     d.innerHTML=cover+'<div class="writing-copy"><time class="writing-date" datetime="'+r.since+'">发布于 '+r.since+'</time><h3>'+r.topic+'</h3><p class="why">'+r.why+'</p><div class="writing-bottom"><span>阅读全文</span><span aria-hidden="true">↗</span></div></div>';
   }else{
     d.innerHTML='<span class="writing-date">'+r.stage+' · 始于 '+r.since+'</span><h3>'+r.topic+'</h3><p class="why">'+r.why+'</p><div class="writing-bottom"><span>'+(r.href?"阅读全文":"研究中")+'</span><span>'+(r.href?"↗":r.pct+"%")+'</span></div>';
