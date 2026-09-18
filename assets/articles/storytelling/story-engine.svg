@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 490" role="img" aria-labelledby="title desc"><title id="title">故事怎样继续往前走</title><desc id="desc">愿望带来行动，结果与预期之间的落差促成调整与新的选择。下一次行动因此改变，而不是仅增加无关意外。</desc>
+<rect width="900" height="490" rx="16" fill="#F9F6EF"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#806B48"/></marker><linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A78E62" stop-opacity=".20"/><stop offset="1" stop-color="#A78E62" stop-opacity="0"/></linearGradient></defs>
+<text x="40" y="50" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="28" font-weight="500" text-anchor="start" fill="#292620">让下一步从上一步长出来</text>
+<rect x="40" y="133" width="190" height="110" rx="10" fill="#FFFFFF" stroke="#D4CBBD"/>
+<text x="135.0" y="173" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="22" font-weight="500" text-anchor="middle" fill="#292620">愿望与代价</text>
+<text x="135.0" y="204" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="19" font-weight="400" text-anchor="middle" fill="#746E65">得到什么，失去什么</text>
+<line x1="236" y1="188" x2="249" y2="188" stroke="#806B48" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="255" y="133" width="190" height="110" rx="10" fill="#FFFFFF" stroke="#D4CBBD"/>
+<text x="350.0" y="173" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="22" font-weight="500" text-anchor="middle" fill="#292620">采取行动</text>
+<text x="350.0" y="204" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="19" font-weight="400" text-anchor="middle" fill="#746E65">按自己的理解尝试</text>
+<line x1="451" y1="188" x2="464" y2="188" stroke="#806B48" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="470" y="133" width="190" height="110" rx="10" fill="#FFFFFF" stroke="#D4CBBD"/>
+<text x="565.0" y="173" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="22" font-weight="500" text-anchor="middle" fill="#292620">结果与预期有落差</text>
+<text x="565.0" y="204" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="19" font-weight="400" text-anchor="middle" fill="#746E65">新的条件或问题出现</text>
+<line x1="666" y1="188" x2="679" y2="188" stroke="#806B48" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="685" y="133" width="190" height="110" rx="10" fill="#FFFFFF" stroke="#D4CBBD"/>
+<text x="780.0" y="173" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="22" font-weight="500" text-anchor="middle" fill="#292620">调整并选择</text>
+<text x="780.0" y="204" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="19" font-weight="400" text-anchor="middle" fill="#746E65">决定下一步怎样行动</text>
+<path d="M 780 254 L 780 305 L 350 305 L 350 254" fill="none" stroke="#806B48" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="560" y="340" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="21" font-weight="400" text-anchor="middle" fill="#806B48">重新判断，进入下一次行动</text>
+<text x="40" y="402" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="22" font-weight="500" text-anchor="start" fill="#292620">每一步形成因果关系，在压力中让人物作出选择。</text>
+<text x="40" y="442" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" fill="#746E65">落差可以带来失败，也可以带来意想不到的暂时成功。</text>
+</svg>

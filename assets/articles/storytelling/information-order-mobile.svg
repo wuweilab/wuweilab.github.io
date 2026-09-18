@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 1020" role="img" aria-labelledby="title desc"><title id="title">同一事件，两种讲述顺序</title><desc id="desc">先经历再解释让听众追踪原因；先交代原因适合迅速说明处置过程。</desc>
+<rect width="400" height="1020" rx="16" fill="#F9F6EF"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#806B48"/></marker><linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A78E62" stop-opacity=".20"/><stop offset="1" stop-color="#A78E62" stop-opacity="0"/></linearGradient></defs>
+<text x="24" y="38" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="19" font-weight="500" text-anchor="start" fill="#292620">同一件事，可以构建不同体验</text>
+<text x="24" y="80" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="18" font-weight="500" text-anchor="start" fill="#806B48">先经历，再解释</text>
+<rect x="30" y="98" width="340" height="76" rx="10" fill="#FFFFFF" stroke="#D4CBBD"/>
+<text x="200.0" y="129" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="18" font-weight="500" text-anchor="middle" fill="#292620">遇到风暴</text>
+<text x="200.0" y="153" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="15" font-weight="400" text-anchor="middle" fill="#746E65">父亲问是否相信他</text>
+<line x1="200" y1="178" x2="200" y2="191" stroke="#806B48" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="30" y="195" width="340" height="76" rx="10" fill="#FFFFFF" stroke="#D4CBBD"/>
+<text x="200.0" y="226" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="18" font-weight="500" text-anchor="middle" fill="#292620">突然落水</text>
+<text x="200.0" y="250" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="15" font-weight="400" text-anchor="middle" fill="#746E65">为什么这样做？</text>
+<line x1="200" y1="275" x2="200" y2="288" stroke="#806B48" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="30" y="292" width="340" height="76" rx="10" fill="#FFFFFF" stroke="#D4CBBD"/>
+<text x="200.0" y="323" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="18" font-weight="500" text-anchor="middle" fill="#292620">父亲跟随</text>
+<text x="200.0" y="347" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="15" font-weight="400" text-anchor="middle" fill="#746E65">船在眼前沉没</text>
+<line x1="200" y1="372" x2="200" y2="385" stroke="#806B48" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="30" y="389" width="340" height="76" rx="10" fill="#FFFFFF" stroke="#D4CBBD"/>
+<text x="200.0" y="420" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="18" font-weight="500" text-anchor="middle" fill="#292620">原因揭晓</text>
+<text x="200.0" y="444" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="15" font-weight="400" text-anchor="middle" fill="#746E65">重新理解这个动作</text>
+<text x="24" y="540" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="18" font-weight="500" text-anchor="start" fill="#806B48">先解释，再交代</text>
+<rect x="30" y="558" width="340" height="76" rx="10" fill="#FFFFFF" stroke="#D4CBBD"/>
+<text x="200.0" y="589" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="18" font-weight="500" text-anchor="middle" fill="#292620">船即将沉没</text>
+<text x="200.0" y="613" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="15" font-weight="400" text-anchor="middle" fill="#746E65">先说明危险与原因</text>
+<line x1="200" y1="638" x2="200" y2="651" stroke="#806B48" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="30" y="655" width="340" height="76" rx="10" fill="#FFFFFF" stroke="#D4CBBD"/>
+<text x="200.0" y="686" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="18" font-weight="500" text-anchor="middle" fill="#292620">父亲安排避险</text>
+<text x="200.0" y="710" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="15" font-weight="400" text-anchor="middle" fill="#746E65">求救并穿上救生衣</text>
+<line x1="200" y1="735" x2="200" y2="748" stroke="#806B48" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="30" y="752" width="340" height="76" rx="10" fill="#FFFFFF" stroke="#D4CBBD"/>
+<text x="200.0" y="783" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="18" font-weight="500" text-anchor="middle" fill="#292620">父子离开船</text>
+<text x="200.0" y="807" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="15" font-weight="400" text-anchor="middle" fill="#746E65">按计划采取行动</text>
+<line x1="200" y1="832" x2="200" y2="845" stroke="#806B48" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="30" y="849" width="340" height="76" rx="10" fill="#FFFFFF" stroke="#D4CBBD"/>
+<text x="200.0" y="880" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="18" font-weight="500" text-anchor="middle" fill="#292620">等待获救</text>
+<text x="200.0" y="904" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="15" font-weight="400" text-anchor="middle" fill="#746E65">完成处置过程</text>
+<text x="24" y="994" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#746E65">根据目的选择顺序，两种讲法各有用途。</text>
+</svg>

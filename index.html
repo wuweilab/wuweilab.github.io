@@ -609,6 +609,10 @@ a.m-card,a.r-card{display:block}a.m-card:focus-visible,a.r-card:focus-visible{ou
 @media(max-width:900px){.radio-layout{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}.radio-layout .music-grid{grid-template-columns:1fr}.radio-layout .mu-card{min-height:0}}
 @media(max-width:700px){.radio-layout{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:10px}.radio-player{padding:13px}.radio-current{grid-template-columns:58px minmax(0,1fr);gap:10px}.radio-label{font-size:8px;margin-bottom:5px}#pl-title{font-size:15px;overflow-wrap:anywhere}#radio-mood{font-size:9px;margin-top:4px}.radio-player .music-bar{grid-template-columns:24px 32px 24px minmax(0,1fr) 0;gap:9px 2px;margin-top:14px}.radio-player .mb-time{display:none}.radio-volume{grid-column:4 / 6}.radio-player .radio-volume .pl-vol{width:42px}.radio-note{margin-top:12px;padding-top:10px;font-size:9px;line-height:1.55}.radio-layout .music-grid{gap:7px}.radio-layout .mu-card{grid-template-columns:36px minmax(0,1fr);gap:8px;padding:8px}.radio-layout .mu-cover{width:36px;height:36px}.radio-layout .mu-name{font-size:12px}.radio-layout .mu-mood{font-size:9px;margin-top:2px}.radio-layout .mu-card::after{display:none}}
 @media(max-width:440px){.radio-layout{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:8px}.radio-player{padding:10px}.radio-current{grid-template-columns:44px minmax(0,1fr);gap:7px}.radio-cover{max-width:44px}.radio-label{font-size:8px;letter-spacing:.1em}#pl-title{font-size:13px}.radio-player .music-bar{grid-template-columns:24px 32px 24px minmax(0,1fr);gap:7px 1px}.radio-volume{display:none}.radio-note{font-size:9.5px}.radio-layout .mu-card{grid-template-columns:30px minmax(0,1fr);gap:6px;padding:6px}.radio-layout .mu-cover{width:30px;height:30px}.radio-layout .mu-name{font-size:11.5px}.radio-layout .mu-mood{font-size:9px}}
+/* 讲故事文章的封面完整呈现解释图，避免按照片比例裁切。 */
+#r-grid .writing-storytelling .writing-illustration{flex:0;display:block;margin-top:24px}
+#r-grid .writing-storytelling .writing-illustration picture{display:block;width:100%}
+#r-grid .writing-storytelling .writing-illustration img{aspect-ratio:auto;height:auto;object-fit:contain}
 </style>
 </head>
 <body>
@@ -823,6 +827,7 @@ a.m-card,a.r-card{display:block}a.m-card:focus-visible,a.r-card:focus-visible{ou
 <script>
 /* ============ 数据（示例内容，后续可随时替换） ============ */
 const CONTENTS = [
+  {"id": 10, "cat": "内容创作", "title": "讲故事，就是构建一条让人愿意走下去的路", "date": "2026-09-18", "read": 25, "href": "articles/storytelling.html", "brief": "从父亲把孩子推下水的故事出发，用四组解释图拆解预期、变化、回报与节奏，理解讲故事怎样进入创作和日常生活。"},
   {"id":9,"cat":"品牌策略","title":"ALO凭什么卖得比lululemon还贵？","date":"2026-09-17","read":8,"href":"articles/alo-brand.html","brief":"从洛杉矶日常、创作者活动到限量托特包，拆解ALO如何把理想生活变成可购买、可记录、可传播的内容。"},
   {id:8,cat:"品牌策略",title:"HYROX为什么突然爆火？",date:"2026-09-16",read:7,href:"articles/hyrox-brand.html",brief:"它没有发明新的健身动作，却把训练变成了一套全球可比较的协议、一场集体仪式和一台由用户驱动的内容机器。"},
   {id:7,cat:"视觉叙事",title:"同一个巫山，为什么他拍的是电影，我拍的是游客照？",date:"2026-09-10",read:8,href:"articles/wushan.html",brief:"从两组巫山影像出发，拆解故事、光线、空间、色彩、瞬间与质感是怎样被安排出来的。"},
@@ -975,6 +980,7 @@ const DOMAINS = [
 
 /* 我正在研究什么 */
 const RESEARCH = [
+  {"cat": "内容创作", "topic": "讲故事，就是构建一条让人愿意走下去的路", "stage": "已发布", "since": "2026-09-18", "pct": 100, "href": "articles/storytelling.html", "cover": "assets/articles/storytelling/attraction-curve.svg", "coverAlt": "从遭遇风暴到获救与解释，六个关注点构成的吸引力示意曲线", "why": "从父亲把孩子推下水的故事出发，用四组解释图拆解预期、变化、回报与节奏，理解讲故事怎样进入创作和日常生活。"},
   {cat:"AI方法",topic:"AI越懂你，你可能越危险",stage:"已发布",since:"2026-09-15",pct:100,href:"articles/ai-sycophancy.html",cover:"assets/articles/ai-sycophancy/ai-flattery-mirror.png",coverAlt:"一个人面对不断回送赞同与理想化倒影的发光 AI 镜面",why:"AI为什么总说你没错？从社会性谄媚、动机性推理和人类反馈训练，理解赞同如何悄悄改变判断。"},
   {cat:"影像创作",topic:"同一个巫山，为什么他拍的是电影，我拍的是游客照？",stage:"已发布",since:"2026-09-10",pct:100,href:"articles/wushan.html",why:"同一个机位，电影里是生活，我拍出来却是留念。从巫山的两组对比，拆解故事、光线、空间、色彩、瞬间与质感如何被精心安排。"},
   {cat:"内容创作",topic:"选题被做烂了，视频还能怎么做？",stage:"已发布",since:"2026-09-06",pct:100,href:"articles/video-rhythm.html",why:"从三张咖啡海报出发，讨论如何安排信息、追问与细节，让熟悉的选题产生新的阅读和观看体验。"},
@@ -1414,6 +1420,7 @@ function buildResearchCard(r,i,isOverview){
   const d=document.createElement(r.href?"a":"div");
   d.className="r-card "+(isOverview?(i===0?"writing-featured":"writing-secondary"):"writing-secondary");
   if(isOverview&&r.href==="articles/video-rhythm.html")d.classList.add("writing-horizontal");
+  if(isOverview&&r.href==="articles/storytelling.html")d.classList.add("writing-storytelling");
   if(r.href){d.href=r.href;d.setAttribute("aria-label",r.topic+"，阅读全文");}
   if(isOverview&&(i===0||r.href==="articles/video-rhythm.html")){
     const cover=r.href==="articles/video-rhythm.html"?'<div class="writing-cover"><img src="assets/articles/video-rhythm/coffee-posters.png?v=2" width="1536" height="1024" alt="同一咖啡杯的三种冲突视觉风格"></div>':"";
@@ -1423,7 +1430,8 @@ function buildResearchCard(r,i,isOverview){
   }
   if(isOverview&&r.cover){
     const summary=d.querySelector(".why");
-    summary.insertAdjacentHTML("afterend",'<figure class="writing-illustration"><img src="'+r.cover+'" width="1536" height="1024" alt="'+r.coverAlt+'" loading="lazy"></figure>');
+    const image=r.href==="articles/storytelling.html"?'<picture><source media="(max-width:640px)" srcset="assets/articles/storytelling/attraction-curve-mobile.svg" width="400" height="660"><img src="'+r.cover+'" width="900" height="650" alt="'+r.coverAlt+'" loading="lazy"></picture>':'<img src="'+r.cover+'" width="1536" height="1024" alt="'+r.coverAlt+'" loading="lazy">';
+    summary.insertAdjacentHTML("afterend",'<figure class="writing-illustration">'+image+'</figure>');
   }
   if(isOverview&&r.href==="articles/wushan.html"){
     const summary=d.querySelector(".why");

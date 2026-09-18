@@ -1,0 +1,20 @@
+/* 本文独立样式，不改变其他页面。 */
+.wu-wordmark{padding-right:22px}
+.prose h3{max-width:700px;margin:32px auto 18px;font-size:18px;font-weight:400;line-height:1.7;scroll-margin-top:110px}
+.article-toc{max-width:700px;margin:0 auto 34px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:13px;color:var(--ink2)}
+.article-toc summary{cursor:pointer;color:var(--accent-deep);min-height:28px;list-style-position:inside}
+.article-toc a{display:block;margin:8px 0;padding:4px 0;line-height:1.8}
+.article-toc a:hover{color:var(--accent-deep)}
+.article-toc[open]{padding-bottom:18px}
+#opening{scroll-margin-top:100px}
+.prose figure{margin-top:34px;margin-bottom:38px}
+.figure-link img{background:#F9F6EF}
+.figure-link picture{display:block}
+.source-note{max-width:700px;margin:48px auto 0;padding-top:22px;border-top:1px solid var(--line);color:var(--ink2);font-size:13px;line-height:1.9}
+.source-note p{margin:0 0 12px}
+.source-note>p:first-child{color:var(--accent-deep);font-weight:400}
+.source-note ul{padding-left:20px;margin:10px 0}
+.source-note li{margin:6px 0}
+@media(max-width:600px){.prose h3{font-size:17px;margin-top:26px}.source-note{font-size:12px}.article-toc{margin-bottom:26px}.prose figure{margin:28px auto}}
+@media(max-width:760px){.figure-link picture{max-width:400px;margin:0 auto}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 580" role="img" aria-labelledby="title desc"><title id="title">期待与回报轮流发生</title><desc id="desc">提出可理解的问题，支付答案或进展，再从答案中产生新的问题。总目标可以未完成，中途需要有收获。</desc>
+<rect width="400" height="580" rx="16" fill="#F9F6EF"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#806B48"/></marker><linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A78E62" stop-opacity=".20"/><stop offset="1" stop-color="#A78E62" stop-opacity="0"/></linearGradient></defs>
+<text x="24" y="38" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="19" font-weight="500" text-anchor="start" fill="#292620">等待，需要不断得到回报</text>
+<rect x="30" y="83" width="340" height="82" rx="10" fill="#FFFFFF" stroke="#D4CBBD"/>
+<text x="200.0" y="114" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="18" font-weight="500" text-anchor="middle" fill="#292620">建立期待</text>
+<text x="200.0" y="138" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="15" font-weight="400" text-anchor="middle" fill="#746E65">我想知道或在意什么</text>
+<line x1="200" y1="171" x2="200" y2="190" stroke="#806B48" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="30" y="201" width="340" height="82" rx="10" fill="#FFFFFF" stroke="#D4CBBD"/>
+<text x="200.0" y="232" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="18" font-weight="500" text-anchor="middle" fill="#292620">给予回报</text>
+<text x="200.0" y="256" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="15" font-weight="400" text-anchor="middle" fill="#746E65">答案、进展、笑声或理解</text>
+<line x1="200" y1="289" x2="200" y2="308" stroke="#806B48" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="30" y="319" width="340" height="82" rx="10" fill="#FFFFFF" stroke="#D4CBBD"/>
+<text x="200.0" y="350" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="18" font-weight="500" text-anchor="middle" fill="#292620">产生新问题</text>
+<text x="200.0" y="374" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="15" font-weight="400" text-anchor="middle" fill="#746E65">下一步为什么值得看</text>
+<text x="24" y="480" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="16" font-weight="500" text-anchor="start" fill="#806B48">找到钥匙 → 发现家里有人来过</text>
+<text x="24" y="512" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#746E65">旧问题已回答，新问题有了依据。</text>
+<text x="24" y="555" font-family="Microsoft YaHei,PingFang SC,Noto Sans SC,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#746E65">总目标未完成，中途也应有收获。</text>
+</svg>
