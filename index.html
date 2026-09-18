@@ -535,7 +535,7 @@ footer .fl{display:flex;align-items:baseline;gap:4px;font-family:var(--sans);fon
 }
 @media(max-width:520px){
   .nav-inner{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
-  .nav-links{display:grid;grid-template-columns:repeat(6,max-content);width:100%;min-width:0;justify-content:space-between;gap:0;padding-top:1px}
+  .nav-links{display:flex;width:100%;min-width:0;justify-content:flex-end;gap:clamp(10px,3vw,16px);padding-top:1px}
   section{scroll-margin-top:88px}
 }
 a.m-card,a.r-card{display:block}a.m-card:focus-visible,a.r-card:focus-visible{outline:2px solid var(--accent-deep);outline-offset:5px}.r-card.published{grid-column:1/-1;border-left:3px solid var(--accent)}.r-card.published .r-prog{max-width:320px}.r-card.published .track{display:none}
