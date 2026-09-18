@@ -626,6 +626,14 @@ a.m-card,a.r-card{display:block}a.m-card:focus-visible,a.r-card:focus-visible{ou
 #tools #wisdom{padding:0;margin:0 0 24px}
 #tools [hidden]{display:none!important}
 #tools-filters{margin-bottom:24px}
+
+/* 已发布文章支持的知识节点 */
+.kp-evidence{margin:0 0 18px;padding:12px 0;border-top:1px solid #504b43;border-bottom:1px solid #504b43}
+.kp-evidence-label{font-size:11px;color:#b8b0a5;margin-bottom:7px;letter-spacing:1px}
+.kp-evidence a{display:block;font-size:12px;color:#e6d5b6;line-height:1.7;margin:5px 0;overflow-wrap:anywhere}
+.kp-evidence a:hover{color:#fff4df}
+.kp-panel:not(.is-overview) .kp-evidence{grid-column:1/-1}
+
 </style>
 </head>
 <body>
@@ -727,7 +735,7 @@ a.m-card,a.r-card{display:block}a.m-card:focus-visible,a.r-card:focus-visible{ou
       </div>
       <svg id="kmap" xmlns="http://www.w3.org/2000/svg" viewBox="-320 -210 640 420"></svg>
       <div class="k-legend">
-        <span><i style="background:#806B48"></i>熟练应用</span>
+        <span><i style="background:#806B48"></i>已沉淀</span>
         <span><i style="background:#F9F6EF;border:2.5px solid #A78E62;box-sizing:border-box"></i>学习中</span>
         <span><i style="background:#F9F6EF;border:1.5px dashed #9A9287;box-sizing:border-box"></i>待探索</span>
         <span style="margin-left:auto;color:var(--ink3)">点击节点展开 · 点击空白处返回</span>
@@ -860,8 +868,8 @@ a.m-card,a.r-card{display:block}a.m-card:focus-visible,a.r-card:focus-visible{ou
 const CONTENTS = [
   {"id": 10, "cat": "内容创作", "title": "讲故事，就是构建一条让人愿意走下去的路", "date": "2026-09-18", "read": 25, "href": "articles/storytelling.html", "brief": "从父亲把孩子推下水的故事出发，用四组解释图拆解预期、变化、回报与节奏，理解讲故事怎样进入创作和日常生活。"},
   {"id":9,"cat":"品牌策略","title":"ALO凭什么卖得比lululemon还贵？","date":"2026-09-17","read":8,"href":"articles/alo-brand.html","brief":"从洛杉矶日常、创作者活动到限量托特包，拆解ALO如何把理想生活变成可购买、可记录、可传播的内容。"},
-  {id:8,cat:"品牌策略",title:"HYROX为什么突然爆火？",date:"2026-09-16",read:7,href:"articles/hyrox-brand.html",brief:"它没有发明新的健身动作，却把训练变成了一套全球可比较的协议、一场集体仪式和一台由用户驱动的内容机器。"},
-  {id:7,cat:"视觉叙事",title:"同一个巫山，为什么他拍的是电影，我拍的是游客照？",date:"2026-09-10",read:8,href:"articles/wushan.html",brief:"从两组巫山影像出发，拆解故事、光线、空间、色彩、瞬间与质感是怎样被安排出来的。"},
+  {id:8,cat:"品牌策略",title:"HYROX为什么突然爆火？",date:"2026-09-16",read:5,href:"articles/hyrox-brand.html",brief:"它没有发明新的健身动作，却把训练变成了一套全球可比较的协议、一场集体仪式和一台由用户驱动的内容机器。"},
+  {id:7,cat:"视觉叙事",title:"同一个巫山，为什么他拍的是电影，我拍的是游客照？",date:"2026-09-10",read:7,href:"articles/wushan.html",brief:"从两组巫山影像出发，拆解故事、光线、空间、色彩、瞬间与质感是怎样被安排出来的。"},
   {id:6,cat:"选题策划",title:"选题被做烂了，视频还能怎么做？",date:"2026-09-06",read:6,href:"articles/video-rhythm.html",brief:"熟悉的题目也能重新成立。关键是重新安排信息、追问和细节，让观众获得新的观看体验。"},
   {id:5,cat:"品牌策略",title:"内容不是流量的燃料，是品牌的证词",date:"2026-08",read:4,brief:"一条内容可能很快被刷走，但持续表达的判断、趣味和标准，会慢慢拼成别人对你的整体印象。",body:[`流量回答的是「有多少人看见」，品牌回答的是「看见之后记住什么」。如果每次追热点都换一种口吻、立场和审美，数据也许会波动上涨，观众却很难说清你是谁。`,`把内容当品牌来做，需要先确定几个长期不变的东西：你持续解决哪类问题，你愿意坚持什么判断，你用什么方式把复杂的事讲清楚。选题可以变化，这些底层承诺不能每周重写。`,`判断一条内容值不值得做，可以多问一句：它除了贡献一次播放，还为长期认知增加了什么？能留下一个清晰印象，才不只是消耗品。`]},
   {id:4,cat:"品牌策略",title:"人设不是标签，是反复兑现的预期",date:"2026-08",read:4,brief:"真正稳定的人设不靠简介里的三个形容词，而靠观众多次看完内容后，对你形成的可靠预期。",body:[`「专业」「真诚」「有趣」写在简介里都不值钱，因为任何人都能写。观众真正相信的人设，来自一次次可验证的体验：你是否查清资料，是否承认不知道，是否在该严肃时严肃、该松弛时松弛。`,`人设更像一种内容契约。观众点进来之前，已经大致知道会得到什么，也知道你不会用什么方式糊弄他。这种确定性，才会变成长期信任。`,`与其设计十个标签，不如选择两三件愿意长期兑现的小事。时间会替你把它们变成品牌。`]},
@@ -871,9 +879,9 @@ const CONTENTS = [
 ];
 
 const METHODS = [
-  {id:15,cat:"心法与思维",title:"AI越懂你，你可能越危险",date:"2026-09-15",read:6,href:"articles/ai-sycophancy.html",formal:true,brief:"AI为什么总说你没错？从社会性谄媚、动机性推理和人类反馈训练，理解赞同如何悄悄改变判断。"},
-  {id:14,cat:"提示词与工作流",title:"用AI做网页、生视频，先把规矩说在前面",date:"2026-09-06",read:7,href:"articles/constraints-first.html",formal:true,brief:"从改网页、做视频到交代工作，用带孩子、带员工的类比，讲清楚边界、优先级与检查点该怎样提前确定。"},
-  {id:13,cat:"提示词与工作流",title:"AI越聊越笨，先别急着补提示词",date:"2026-09-06",read:5,href:"articles/context-rot.html",formal:true,brief:"提示词越补越长，结果却越来越差。从甲方需求到上下文腐烂，整理让长对话重新清晰的四个动作。"},
+  {id:15,cat:"心法与思维",title:"AI越懂你，你可能越危险",date:"2026-09-15",read:4,href:"articles/ai-sycophancy.html",formal:true,brief:"AI为什么总说你没错？从社会性谄媚、动机性推理和人类反馈训练，理解赞同如何悄悄改变判断。"},
+  {id:14,cat:"提示词与工作流",title:"用AI做网页、生视频，先把规矩说在前面",date:"2026-09-06",read:6,href:"articles/constraints-first.html",formal:true,brief:"从改网页、做视频到交代工作，用带孩子、带员工的类比，讲清楚边界、优先级与检查点该怎样提前确定。"},
+  {id:13,cat:"提示词与工作流",title:"AI越聊越笨，先别急着补提示词",date:"2026-09-06",read:4,href:"articles/context-rot.html",formal:true,brief:"提示词越补越长，结果却越来越差。从甲方需求到上下文腐烂，整理让长对话重新清晰的四个动作。"},
   {id:8,cat:"网页设计",title:"层级清楚：每屏只突出一个重点",date:"2026-08",read:3,
    brief:"标题最大、正文次之、辅助信息最弱。让人一眼知道先看什么，是排版的第一使命。",
    body:[`页面上的每个元素都在争夺注意力，但用户一次只能聚焦一处。所谓层级，就是替用户安排好主次：谁当主角，谁退到背景里去。`,
@@ -968,45 +976,338 @@ const WORKS = [
 
 /* AI 知识树数据：领域 → 技能（state: done 熟练 / learning 学习中(pct) / todo 待探索） */
 const DOMAINS = [
-  {key:"cognition",name:"认知心法",color:"#806B48",methods:2,works:1,
-   desc:"怎么想，比怎么用更根本。这个领域沉淀我与 AI 协作的底层认知：它是什么、不是什么、边界在哪。",
-   next:"把「AI 幻觉识别」练到能盲判的程度",
-   skills:[
-    {label:"AI协作认知",state:"done",when:"2025-11",note:"完成从「AI是玩具」到「AI是同事」的认知转变，开始在工作流中系统性引入 AI。"},
-    {label:"信息鉴别力",state:"done",when:"2026-03",note:"被 AI 编造的引文坑过之后立下的铁律：关键数据必查一手出处。"},
-    {label:"AI幻觉识别",state:"learning",pct:30,when:"2026-08",note:"不止是查出处，还要能从行文特征上嗅出 AI 一本正经的胡说。"}]},
-  {key:"text",name:"文本写作",color:"#8E754B",methods:2,works:2,
-   desc:"从提示词到长文，用 AI 写出没有人味机器味的文字。结构我掌，草稿它打。",
-   next:"把口播稿的手艺迁移到短剧剧本",
-   skills:[
-    {label:"提示词基础",state:"done",when:"2025-12",note:"角色-任务-约束三段式，产出质量稳定性大幅提升。"},
-    {label:"长文写作",state:"done",when:"2026-02",note:"AI 打草稿、自己掌结构的长文写作法，摆脱 AI 味文风。"},
-    {label:"AI剧本写作",state:"todo",note:"场景、对白、节奏三线并行，口播手艺的下一站。"}]},
-  {key:"image",name:"图像创作",color:"#A78E62",methods:1,works:2,
-   desc:"从随机抽卡到定向控图，让图像生成服从构图与事实的双重要求。",
-   next:"解锁 3D 场景生成，给视频创作输送弹药",
-   skills:[
-    {label:"AI生图",state:"done",when:"2026-01",note:"垫图、锁定构图与色调，从抽卡走向控图。"},
-    {label:"信息图设计",state:"done",when:"2026-04",note:"为科普口播配图，掌握「先核实数据再配图」的纪律。"},
-    {label:"老照片修复",state:"done",when:"2026-06",note:"修复上色三张家族老照片，学会对抗 AI 的过度美化。"},
-    {label:"3D场景生成",state:"todo",note:"可旋转的 3D 资产直接进片。"},
-    {label:"AI设计排版",state:"todo",note:"信息图的下一站：整版杂志级的自动排版。"}]},
-  {key:"video",name:"视频创作",color:"#B49C70",methods:2,works:2,
-   desc:"先当导演，再当观众。分镜、控图、剪辑，把镜头语言翻译成提示词。",
-   next:"攻下 AI 配音配乐，补齐短片最后一块板",
-   skills:[
-    {label:"文生视频",state:"done",when:"2026-03",note:"第一支 AI 短片。分镜优先级：镜头运动>光线>构图>风格。"},
-    {label:"图生视频控图",state:"learning",pct:60,when:"2026-06",note:"首帧锁定技法：随机性交给图片，生命力交给模型。"},
-    {label:"AI配音配乐",state:"todo",note:"配音、音效、BGM 一站式 AI 化。"},
-    {label:"AI微电影",state:"todo",note:"多镜头叙事完整成片：分镜脚本、生成、混剪全流程。"}]},
-  {key:"tool",name:"工作流",color:"#9A835D",methods:2,works:1,
-   desc:"把单点技能串成流水线，让多个模型各司其职，判断权留在自己手里。",
-   next:"把重复的工作流封装成稳定运行的 Agent",
-   skills:[
-    {label:"工作流编排",state:"done",when:"2026-05",note:"生图、生视频、写作串成流水线，单片周期从一周压到两天。"},
-    {label:"多模型协作",state:"learning",pct:40,when:"2026-08",note:"发散用 A、砍方案用 B、执行用 C，正在固化成一张分工表。"},
-    {label:"智能体搭建",state:"todo",note:"把重复的工作流封装成自动运转的 Agent。"},
-    {label:"RAG知识库",state:"todo",note:"给自己的素材库装上检索大脑，写作时随取随用。"}]}
+  {
+    "key": "cognition",
+    "name": "认知心法",
+    "color": "#806B48",
+    "methods": 2,
+    "works": 1,
+    "desc": "怎么想，比怎么用更根本。这个领域沉淀我与 AI 协作的底层认知：它是什么、不是什么、边界在哪。",
+    "next": "用不表态提问与反例检验AI判断，继续完善事实核查方法。",
+    "skills": [
+      {
+        "label": "AI协作认知",
+        "state": "done",
+        "when": "2025-11",
+        "note": "完成从「AI是玩具」到「AI是同事」的认知转变，开始在工作流中系统性引入 AI。"
+      },
+      {
+        "label": "信息鉴别力",
+        "state": "done",
+        "when": "2026-03",
+        "note": "关键数据追溯出处，区分事实、推测与立场；在AI迎合分析和电车文稿校订中沉淀核查方法。",
+        "sources": [
+          {
+            "href": "articles/ai-sycophancy.html",
+            "title": "AI越懂你，你可能越危险"
+          },
+          {
+            "href": "articles/ev-technology-tree.html",
+            "title": "欧美纷纷放弃全面电动化，中国电车点错科技树？"
+          }
+        ]
+      },
+      {
+        "label": "AI幻觉识别",
+        "state": "learning",
+        "pct": 30,
+        "when": "2026-08",
+        "note": "不止是查出处，还要能从行文特征上嗅出 AI 一本正经的胡说。"
+      },
+      {
+        "label": "AI判断与反迎合",
+        "state": "done",
+        "when": "2026-09",
+        "note": "已整理AI谄媚、动机性推理与独立判断的公开笔记：区分安慰与事实，以反例和不表态提问检查回答。",
+        "sources": [
+          {
+            "href": "articles/ai-sycophancy.html",
+            "title": "AI越懂你，你可能越危险"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "key": "text",
+    "name": "文本写作",
+    "color": "#8E754B",
+    "methods": 2,
+    "works": 2,
+    "desc": "结构由自己把握，借助AI展开草稿；从公开文章中沉淀故事构建、选题重构和写作节奏。",
+    "next": "把故事构建方法放进下一篇文章，检查预期、变化与回报是否相互承接。",
+    "skills": [
+      {
+        "label": "提示词基础",
+        "state": "done",
+        "when": "2025-12",
+        "note": "角色-任务-约束三段式，产出质量稳定性大幅提升。"
+      },
+      {
+        "label": "长文写作",
+        "state": "done",
+        "when": "2026-02",
+        "note": "AI 打草稿、自己掌结构的长文写作法，摆脱 AI 味文风。"
+      },
+      {
+        "label": "AI剧本写作",
+        "state": "todo",
+        "note": "场景、对白、节奏三线并行，口播手艺的下一站。"
+      },
+      {
+        "label": "故事构建",
+        "state": "done",
+        "when": "2026-09",
+        "note": "从预期、变化、回报和节奏组织故事，用愿望、阻力、选择与行动后果推动叙事，并形成六项练习。",
+        "sources": [
+          {
+            "href": "articles/storytelling.html",
+            "title": "讲故事，就是构建一条让人愿意走下去的路"
+          }
+        ]
+      },
+      {
+        "label": "选题重构与节奏",
+        "state": "done",
+        "when": "2026-09",
+        "note": "通过重新安排信息、追问与具体细节，让熟悉的选题产生新的阅读和观看体验。",
+        "sources": [
+          {
+            "href": "articles/video-rhythm.html",
+            "title": "选题被做烂了，视频还能怎么做？"
+          },
+          {
+            "href": "articles/storytelling.html",
+            "title": "讲故事，就是构建一条让人愿意走下去的路"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "key": "image",
+    "name": "图像创作",
+    "color": "#A78E62",
+    "methods": 3,
+    "works": 2,
+    "desc": "从随机抽卡到定向控图，让图像生成服从构图与事实的双重要求。",
+    "next": "解锁 3D 场景生成，给视频创作输送弹药",
+    "skills": [
+      {
+        "label": "AI生图",
+        "state": "done",
+        "when": "2026-01",
+        "note": "垫图、锁定构图与色调，从抽卡走向控图。"
+      },
+      {
+        "label": "信息图设计",
+        "state": "done",
+        "when": "2026-04",
+        "note": "使用吸引力曲线和故事解释图帮助理解叙事结构；清楚区分解释示意与实测数据。",
+        "sources": [
+          {
+            "href": "articles/storytelling.html",
+            "title": "讲故事，就是构建一条让人愿意走下去的路"
+          },
+          {
+            "href": "articles/video-rhythm.html",
+            "title": "选题被做烂了，视频还能怎么做？"
+          }
+        ]
+      },
+      {
+        "label": "老照片修复",
+        "state": "done",
+        "when": "2026-06",
+        "note": "修复上色三张家族老照片，学会对抗 AI 的过度美化。"
+      },
+      {
+        "label": "3D场景生成",
+        "state": "todo",
+        "note": "可旋转的 3D 资产直接进片。"
+      },
+      {
+        "label": "AI设计排版",
+        "state": "todo",
+        "note": "信息图的下一站：整版杂志级的自动排版。"
+      },
+      {
+        "label": "视觉叙事分析",
+        "state": "done",
+        "when": "2026-09",
+        "note": "结合巫山影像对比，整理故事、光线、空间、色彩、瞬间与质感六个维度，形成拍摄前的决策清单。",
+        "sources": [
+          {
+            "href": "articles/wushan.html",
+            "title": "同一个巫山，为什么他拍的是电影，我拍的是游客照？"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "key": "video",
+    "name": "视频创作",
+    "color": "#B49C70",
+    "methods": 2,
+    "works": 2,
+    "desc": "先当导演，再当观众。分镜、控图、剪辑，把镜头语言翻译成提示词。",
+    "next": "把画面六维度与叙事节奏用于一个完整短片，再回看镜头之间的行动与后果。",
+    "skills": [
+      {
+        "label": "文生视频",
+        "state": "done",
+        "when": "2026-03",
+        "note": "第一支 AI 短片。分镜优先级：镜头运动>光线>构图>风格。"
+      },
+      {
+        "label": "图生视频控图",
+        "state": "learning",
+        "pct": 60,
+        "when": "2026-06",
+        "note": "首帧锁定技法：随机性交给图片，生命力交给模型。"
+      },
+      {
+        "label": "AI配音配乐",
+        "state": "todo",
+        "note": "配音、音效、BGM 一站式 AI 化。"
+      },
+      {
+        "label": "AI微电影",
+        "state": "todo",
+        "note": "多镜头叙事完整成片：分镜脚本、生成、混剪全流程。"
+      },
+      {
+        "label": "镜头叙事与节奏",
+        "state": "done",
+        "when": "2026-09",
+        "note": "从画面中的事件与人物关系出发，连接镜头表达、信息安排和观看节奏，已形成分析笔记。",
+        "sources": [
+          {
+            "href": "articles/wushan.html",
+            "title": "同一个巫山，为什么他拍的是电影，我拍的是游客照？"
+          },
+          {
+            "href": "articles/video-rhythm.html",
+            "title": "选题被做烂了，视频还能怎么做？"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "key": "tool",
+    "name": "工作流",
+    "color": "#9A835D",
+    "methods": 2,
+    "works": 1,
+    "desc": "把单点技能串成流水线，让多个模型各司其职，判断权留在自己手里。",
+    "next": "把重复的工作流封装成稳定运行的 Agent",
+    "skills": [
+      {
+        "label": "工作流编排",
+        "state": "done",
+        "when": "2026-05",
+        "note": "生图、生视频、写作串成流水线，单片周期从一周压到两天。"
+      },
+      {
+        "label": "多模型协作",
+        "state": "learning",
+        "pct": 40,
+        "when": "2026-08",
+        "note": "发散用 A、砍方案用 B、执行用 C，正在固化成一张分工表。"
+      },
+      {
+        "label": "智能体搭建",
+        "state": "todo",
+        "note": "把重复的工作流封装成自动运转的 Agent。"
+      },
+      {
+        "label": "RAG知识库",
+        "state": "todo",
+        "note": "给自己的素材库装上检索大脑，写作时随取随用。"
+      },
+      {
+        "label": "任务边界与检查点",
+        "state": "done",
+        "when": "2026-09",
+        "note": "开工前确定底线、偏好和优先级；在提纲、样稿和预览阶段检查方向，降低后期返工。",
+        "sources": [
+          {
+            "href": "articles/constraints-first.html",
+            "title": "用AI做网页、生视频，先把规矩说在前面"
+          }
+        ]
+      },
+      {
+        "label": "上下文管理",
+        "state": "done",
+        "when": "2026-09",
+        "note": "在长对话中重新整理目标、有效要求和当前材料，控制上下文冗余，让任务恢复清晰。",
+        "sources": [
+          {
+            "href": "articles/context-rot.html",
+            "title": "AI越聊越笨，先别急着补提示词"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "key": "brand",
+    "name": "品牌策略",
+    "color": "#927950",
+    "methods": 3,
+    "works": 0,
+    "desc": "从已发布的ALO与HYROX分析出发，理解生活方式、用户仪式、内容传播与渠道如何一起构成品牌。",
+    "next": "用同一套维度对照更多品牌，检验场景、承诺与实际体验是否一致。",
+    "skills": [
+      {
+        "label": "生活方式与内容场景",
+        "state": "done",
+        "when": "2026-09",
+        "note": "分析ALO如何把理想生活变成可购买、可记录、可传播的场景，并让表达与实际体验连接。",
+        "sources": [
+          {
+            "href": "articles/alo-brand.html",
+            "title": "ALO凭什么卖得比lululemon还贵？"
+          },
+          {
+            "href": "articles/storytelling.html",
+            "title": "讲故事，就是构建一条让人愿意走下去的路"
+          }
+        ]
+      },
+      {
+        "label": "用户仪式与传播",
+        "state": "done",
+        "when": "2026-09",
+        "note": "从HYROX和ALO案例梳理身份表达、参与仪式与用户内容之间的关系。",
+        "sources": [
+          {
+            "href": "articles/hyrox-brand.html",
+            "title": "HYROX为什么突然爆火？"
+          },
+          {
+            "href": "articles/alo-brand.html",
+            "title": "ALO凭什么卖得比lululemon还贵？"
+          }
+        ]
+      },
+      {
+        "label": "协议与渠道分析",
+        "state": "done",
+        "when": "2026-09",
+        "note": "从HYROX的可比较比赛规则和健身房渠道入手，理解产品标准、参与体验与扩张的关系。",
+        "sources": [
+          {
+            "href": "articles/hyrox-brand.html",
+            "title": "HYROX为什么突然爆火？"
+          }
+        ]
+      }
+    ]
+  }
 ];
 
 /* 我正在研究什么 */
@@ -1181,7 +1482,7 @@ function domSkills(d){return d.skills.concat(addedSkills[d.key]||[]).map(s=>{con
 function skillVal(s){return s.state==="done"?100:s.state==="learning"?(s.pct||30):0}
 function domPct(d){const ss=domSkills(d);return ss.length?Math.round(ss.reduce((a,s)=>a+skillVal(s),0)/ss.length):0}
 function domState(p){return p>=75?"done":p>=40?"learning":"todo"}
-function stateName(s){return s==="done"?"熟练应用":s==="learning"?"学习中":"待探索"}
+function stateName(s){return s==="done"?"已沉淀":s==="learning"?"学习中":"待探索"}
 function allSkills(){return DOMAINS.flatMap(d=>domSkills(d))}
 function dotColor(s,c){return s==="done"?c:(s==="learning"?"transparent":"#57534e")}
 
@@ -1222,7 +1523,7 @@ function buildTree(){
   root.el=document.createElementNS(KNS,"g");root.el.setAttribute("class","knode");
   root.el.innerHTML='<circle r="56" fill="#292620"/>'+
     '<text y="-3" text-anchor="middle" font-size="17" font-weight="700" fill="#F4F0E8">AI 能力树</text>'+
-    '<text y="19" text-anchor="middle" font-size="10.5" fill="#B8B0A5">'+doneN+' / '+ss0.length+' 已掌握</text>';
+    '<text y="19" text-anchor="middle" font-size="10.5" fill="#B8B0A5">'+doneN+' / '+ss0.length+' 已沉淀</text>';
   root.el.addEventListener("click",e=>e.stopPropagation());
   knodes.push(root);
   DOMAINS.forEach(d=>{
@@ -1234,7 +1535,7 @@ function buildTree(){
     rect+='/>';
     n.el.innerHTML=rect+
       '<text y="-1" text-anchor="middle" font-size="15" font-weight="700" fill="#292620">'+d.name+'</text>'+
-      '<text y="17" text-anchor="middle" font-size="10.5" fill="#746E65">熟练度 '+p+'%</text>'+
+      '<text y="17" text-anchor="middle" font-size="10.5" fill="#746E65">沉淀进度 '+p+'%</text>'+
       '<circle cx="54" cy="-14" r="5" fill="'+(st==="done"?d.color:"#F9F6EF")+'" stroke="'+(st==="learning"?d.color:st==="todo"?"#9A9287":"none")+'" stroke-width="2.5"/>';
     n.el.addEventListener("click",e=>{e.stopPropagation();ktFocus(d.key)});
     knodes.push(n);
@@ -1283,7 +1584,7 @@ function layoutAll(instant){
     setN(root,0,0,1,1);
     DOMAINS.forEach((d,i)=>{
       const n=knodes.find(x=>x.type==="domain"&&x.ref.key===d.key);
-      const a=(-90+i*72)*Math.PI/180,x=Math.cos(a)*R1,y=Math.sin(a)*145;
+      const a=(-90+i*(360/DOMAINS.length))*Math.PI/180,x=Math.cos(a)*R1,y=Math.sin(a)*145;
       setN(n,x,y,1,1);
       knodes.forEach(s=>{
         if((s.type==="skill"&&s.dom===d.key)||(s.type==="plus"&&s.ref===d.key))setN(s,x,y,0,.6);
@@ -1295,7 +1596,7 @@ function layoutAll(instant){
     DOMAINS.forEach((d,i)=>{
       const n=knodes.find(x=>x.type==="domain"&&x.ref.key===d.key);
       if(d.key===curDomain){setN(n,0,0,1,1.2)}
-      else{const a=(-90+i*72)*Math.PI/180;setN(n,Math.cos(a)*268,Math.sin(a)*268,0,.8)}
+      else{const a=(-90+i*(360/DOMAINS.length))*Math.PI/180;setN(n,Math.cos(a)*268,Math.sin(a)*268,0,.8)}
     });
     knodes.filter(n=>(n.type==="skill"&&n.dom!==curDomain)||(n.type==="plus"&&n.ref!==curDomain)).forEach(n=>setN(n,n.x,n.y,0,.6));
     const ss=knodes.filter(x=>x.type==="skill"&&x.dom===curDomain);
@@ -1326,6 +1627,10 @@ function skillRow(dk,s){
   '<span class="d" style="background:'+dotColor(s.state,d.color)+';'+(s.state==="learning"?"box-shadow:inset 0 0 0 2px "+d.color+";":"")+'"></span>'+
   '<span>'+s.label+'</span><span class="w">'+(s.when||"—")+'</span></div>';
 }
+function skillEvidence(s){
+  if(!s.sources||!s.sources.length)return "";
+  return '<div class="kp-evidence"><div class="kp-evidence-label">相关发布</div>'+s.sources.map(source=>'<a href="'+source.href+'">'+source.title+' ↗</a>').join('')+'</div>';
+}
 function renderPanel(){
   const el=document.getElementById("kp-panel");
   el.classList.toggle('is-overview',!curDomain&&!curSkill);
@@ -1343,13 +1648,13 @@ function renderPanel(){
     '<div class="kp-sub">'+d.name+' · '+(s.when?("点亮于 "+s.when):"尚未点亮")+'</div>'+
     '<div class="kp-bar"><i style="width:'+skillVal(s)+'%"></i></div>'+
     '<div class="kp-barrow"><span>'+stateName(s.state)+'</span><b>'+skillVal(s)+'%</b></div>'+
-    '<p class="kp-desc">'+(s.note||"")+'</p>'+
-    '<div class="kp-stats"><div class="kp-stat"><div class="n">'+d.methods+'</div><div class="l">领域关联方法</div></div>'+
+    '<p class="kp-desc">'+(s.note||"")+'</p>'+skillEvidence(s)+
+    '<div class="kp-stats"><div class="kp-stat"><div class="n">'+d.methods+'</div><div class="l">领域关联文章</div></div>'+
     '<div class="kp-stat"><div class="n">'+d.works+'</div><div class="l">领域实践作品</div></div></div>'+
     '<div class="kp-next"><div class="l">领域下一步</div><div class="t">'+d.next+'</div></div>'+
     '<div class="kp-act">'+
     (s.state==="todo"?'<button class="kp-btn" onclick="markSkill(\''+curDomain+'\',\''+enc+'\',\'learning\')">开始学习</button>':"")+
-    (s.state==="learning"?'<button class="kp-btn" onclick="markSkill(\''+curDomain+'\',\''+enc+'\',\'done\')">标记已掌握</button>':"")+
+    (s.state==="learning"?'<button class="kp-btn" onclick="markSkill(\''+curDomain+'\',\''+enc+'\',\'done\')">标记已沉淀</button>':"")+
     (s.state==="done"?'<button class="kp-btn ghost" onclick="markSkill(\''+curDomain+'\',\''+enc+'\',\'learning\')">回退为学习中</button>':"")+
     '<button class="kp-btn ghost" onclick="kpBack()">← 返回领域</button></div>';
   }else if(curDomain){
@@ -1359,9 +1664,9 @@ function renderPanel(){
     '<div class="kp-title">'+d.name+'</div>'+
     '<div class="kp-sub">'+ss.length+' 项技能 · '+stateName(st)+'</div>'+
     '<div class="kp-bar"><i style="width:'+p+'%"></i></div>'+
-    '<div class="kp-barrow"><span>领域熟练度</span><b>'+p+'%</b></div>'+
+    '<div class="kp-barrow"><span>领域沉淀进度</span><b>'+p+'%</b></div>'+
     '<p class="kp-desc">'+d.desc+'</p>'+
-    '<div class="kp-stats"><div class="kp-stat"><div class="n">'+d.methods+'</div><div class="l">关联方法</div></div>'+
+    '<div class="kp-stats"><div class="kp-stat"><div class="n">'+d.methods+'</div><div class="l">关联文章</div></div>'+
     '<div class="kp-stat"><div class="n">'+d.works+'</div><div class="l">实践作品</div></div></div>'+
     '<div class="kp-skills"><h4>技能清单</h4>'+ss.map(s=>skillRow(curDomain,s)).join("")+'</div>'+
     '<div class="kp-next"><div class="l">下一步</div><div class="t">'+d.next+'</div></div>';
