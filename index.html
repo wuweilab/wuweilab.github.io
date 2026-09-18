@@ -613,6 +613,19 @@ a.m-card,a.r-card{display:block}a.m-card:focus-visible,a.r-card:focus-visible{ou
 #r-grid .writing-storytelling .writing-illustration{flex:0;display:block;margin-top:24px}
 #r-grid .writing-storytelling .writing-illustration picture{display:block;width:100%}
 #r-grid .writing-storytelling .writing-illustration img{aspect-ratio:auto;height:auto;object-fit:contain}
+/* 智慧球：常用工具下方的创意栏目 */
+#wisdom{padding-top:0;padding-bottom:68px}
+.wisdom-card{display:grid;grid-template-columns:minmax(0,1fr) 380px;align-items:center;gap:28px;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:24px 36px}
+.wisdom-kicker{font-family:var(--mono);font-size:11px;letter-spacing:3px;color:var(--accent)}
+.wisdom-copy h2{font-family:var(--display);font-size:28px;font-weight:600;line-height:1.4;margin:12px 0 16px}
+.wisdom-copy p{font-size:14px;color:var(--ink2);max-width:340px;line-height:1.8}
+.wisdom-frame{display:block;width:100%;height:380px;border:0;background:transparent}
+@media(max-width:760px){.wisdom-card{grid-template-columns:minmax(0,1fr);gap:8px;padding:28px 20px 12px}.wisdom-copy h2{font-size:25px}.wisdom-frame{height:350px}#wisdom{padding-bottom:48px}}
+@media(max-width:400px){.wisdom-card{padding:25px 14px 10px}.wisdom-frame{height:320px}.wisdom-copy p{font-size:13px}}
+/* 常用工具中的智慧球筛选项 */
+#tools #wisdom{padding:0;margin:0 0 24px}
+#tools [hidden]{display:none!important}
+#tools-filters{margin-bottom:24px}
 </style>
 </head>
 <body>
@@ -731,9 +744,27 @@ a.m-card,a.r-card{display:block}a.m-card:focus-visible,a.r-card:focus-visible{ou
     <h2>常用工具</h2>
     <p>围绕影像制作与策划写作，整理从灵感、查证到内容成品的工具搭配。</p>
   </div>
-  <div class="tools-grid rv" id="tools-grid"></div>
+    <div class="filters" id="tools-filters" role="group" aria-label="常用工具筛选">
+    <button type="button" class="chip on" data-tool-filter="wisdom" aria-pressed="true" aria-controls="wisdom">智慧球</button>
+    <button type="button" class="chip" data-tool-filter="combos" aria-pressed="false" aria-controls="tools-combos">工具组合</button>
+  </div>
+<!-- 智慧球：创意发散 -->
+<div id="wisdom" aria-labelledby="wisdom-title">
+  <div class="wisdom-card">
+    <div class="wisdom-copy">
+      <div class="wisdom-kicker">IDEA LAB / 智慧球</div>
+      <h2 id="wisdom-title">卡住了？摇一摇。</h2>
+      <p>写下你的问题，让三个随机词带来一个新的方向。</p>
+    </div>
+    <iframe class="wisdom-frame" src="wisdom-ball/index.html" title="智慧球：写下问题，摇出三个随机词" loading="lazy"></iframe>
+  </div>
+</div>
+<div id="tools-combos" hidden>
+<div class="tools-grid rv" id="tools-grid"></div>
   <div class="more-wrap" id="t-more" style="display:none"><button class="more-btn" id="t-more-btn">展开全部</button></div>
+</div>
 </section>
+
 
 <!-- 工坊电台 -->
 <section id="music">
@@ -1680,6 +1711,23 @@ window.addEventListener("scroll",()=>{
   else if(y<=600||delta>0||backtopReturning)hideBacktop();
   backtopTimer=setTimeout(()=>{hideBacktop();backtopReturning=false},1600);
 },{passive:true});
+</script>
+<script id="wisdom-tool-filter">
+(()=>{
+  const buttons=[...document.querySelectorAll('[data-tool-filter]')];
+  const wisdom=document.getElementById('wisdom');
+  const combos=document.getElementById('tools-combos');
+  buttons.forEach(button=>button.addEventListener('click',()=>{
+    const filter=button.dataset.toolFilter;
+    wisdom.hidden=filter==='combos';
+    combos.hidden=filter==='wisdom';
+    buttons.forEach(item=>{
+      const active=item===button;
+      item.classList.toggle('on',active);
+      item.setAttribute('aria-pressed',String(active));
+    });
+  }));
+})();
 </script>
 </body>
 </html>

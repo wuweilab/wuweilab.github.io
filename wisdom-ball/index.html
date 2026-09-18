@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>智慧球</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:transparent}body{display:grid;place-items:center;padding:16px;overflow:hidden;color:#625440;font:16px/1.6 system-ui,"Microsoft YaHei",sans-serif}button,textarea{font:inherit}button{cursor:pointer;touch-action:manipulation}main{--size:min(350px,calc(100vw - 36px),calc(100dvh - 50px));width:var(--size);height:var(--size);position:relative}.ball{position:relative;width:100%;height:100%;border:1.5px solid #c9b99f;border-radius:50%;background:transparent;transition:border-color .6s}.form{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:22px;padding:0 15%;transition:opacity .25s,transform .6s cubic-bezier(.4,0,.2,1)}.input{width:100%;height:64px;resize:none;background:transparent;border:1px solid #d5c9b6;border-radius:16px;outline:0;padding:17px 10px;text-align:center;color:#625440;font-size:clamp(17px,4.5vw,20px);line-height:1.4}.input::placeholder{color:#a3947e}.confirm,.again{background:transparent;border:1px solid #cdbda5;border-radius:30px;color:#76664e;padding:10px 25px;font-size:14px;transition:background .2s,transform .2s}.confirm:hover,.again:hover{background:#bca7890d;transform:translateY(-1px)}button:focus-visible,.input:focus-visible{outline:2px solid #b6a183;outline-offset:4px}.shell{position:absolute;inset:-1.5px;z-index:4;border:1.5px solid #c9b99f;border-radius:50%;background:transparent;pointer-events:none;opacity:0;transition:transform .85s cubic-bezier(.22,1,.36,1),opacity .3s}.top{clip-path:inset(0 0 50% 0);transform:translateY(-22%) rotate(-6deg)}.bottom{clip-path:inset(50% 0 0 0);transform:translateY(22%) rotate(6deg)}.seam{position:absolute;left:3%;right:3%;top:50%;height:1px;background:#c9b99f;z-index:5;opacity:0;transition:opacity .4s}.words{position:absolute;inset:0;z-index:6;pointer-events:none}.word{position:absolute;width:27%;aspect-ratio:1/1;display:grid;place-items:center;text-align:center;padding:8px;background:transparent;border:1px solid #cdbda5;border-radius:50%;color:#625440;font-size:clamp(15px,4.5vw,20px);font-weight:500;overflow-wrap:anywhere;opacity:0;transform:translate(var(--x),var(--y)) scale(.05);transition:opacity .3s,transform 1s cubic-bezier(.18,.9,.27,1.15)}.word:nth-child(1){left:10%;top:15%;--x:65px;--y:65px}.word:nth-child(2){right:10%;top:17%;--x:-65px;--y:60px;transition-delay:.12s}.word:nth-child(3){left:36.5%;top:47%;--x:0px;--y:-15px;transition-delay:.24s}.actions{position:absolute;left:8%;right:8%;bottom:6%;z-index:7;display:flex;align-items:center;justify-content:center;gap:8px;opacity:0;visibility:hidden;transition:opacity .4s}.again{padding:7px 14px;font-size:12px}.edit{border:0;background:transparent;color:#95836b;font-size:12px;padding:8px}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.error{position:absolute;top:calc(100% + 6px);width:100%;text-align:center;color:#947558;font-size:12px}main[data-phase=closing] .form,main[data-phase=charging] .form,main[data-phase=opening] .form,main[data-phase=revealed] .form{opacity:0;transform:scale(.65);pointer-events:none}main[data-phase=closing] .ball,main[data-phase=charging] .ball{border-color:transparent}main[data-phase=closing] .shell,main[data-phase=charging] .shell{opacity:1;transform:translateY(0) rotate(0)}main[data-phase=closing] .seam,main[data-phase=charging] .seam{opacity:1}main[data-phase=charging] .ball{animation:charge .8s ease-in-out both}main[data-phase=opening] .word,main[data-phase=revealed] .word{opacity:1;transform:translate(0,0) scale(1)}main[data-phase=revealed] .actions{opacity:1;visibility:visible}@keyframes charge{0%,100%{transform:translateY(0)}30%{transform:scale(1.015,.985)}60%{transform:rotate(-2deg)}80%{transform:rotate(2deg)}}@media(max-height:340px){.form{gap:12px}.input{height:56px;padding:13px 8px}.confirm{padding:7px 17px}.actions{bottom:4%}}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* 多平面轨道：保持中心交互区域清晰 */
+.orbits{position:absolute;inset:-6%;width:112%;height:112%;overflow:visible;z-index:1;pointer-events:none}
+.orbits ellipse,.orbits circle{fill:none;stroke:#c5b397;stroke-width:.8;vector-effect:non-scaling-stroke}
+.orbits .outer-track{opacity:.65}
+.orbits .inner-track{opacity:.4}
+.orbits .meridian{opacity:.35}
+.orbits .outer-edge{opacity:.24}
+.orbits .clear-results{display:none}
+main[data-phase=opening] .orbits .clear-idle,main[data-phase=revealed] .orbits .clear-idle{display:none}
+main[data-phase=opening] .orbits .clear-results,main[data-phase=revealed] .orbits .clear-results{display:inline}
+.orbits{transition:opacity .6s}
+main[data-phase=closing] .orbits,main[data-phase=charging] .orbits{opacity:.45}
+
+
+/* 输入问题与抽词操作横向排列 */
+.ball .form{display:grid;grid-template-columns:minmax(0,1fr) auto;align-content:center;align-items:center;gap:8px;padding:0 8%}
+.ball .input{height:48px;min-width:0;padding:12px 8px;border-radius:14px;font-size:14px;line-height:22px;overflow:auto}
+.ball .confirm{height:48px;padding:0 12px;border-radius:14px;font-size:12px;white-space:nowrap}
+
+
+/* 单轨道线框地球 */
+main{--size:min(310px,calc(100vw - 52px),calc(100dvh - 46px))}
+.ball{border-width:1px;border-color:#beab8b}
+.shell{border-width:1px;border-color:#beab8b}
+.orbits .outer-edge,.orbits .inner-track,.orbits .meridian{display:none}
+.orbits .outer-track{opacity:.55;stroke:#c5b394;stroke-width:.75}
+.orbits .orbit-dot{fill:#b7a07b;stroke:none;opacity:.8}
+.ball .form{padding:0 8%;gap:9px}
+.ball .input{background:transparent;border-color:#d6c9b4;color:#746249;font-size:14px}
+.ball .confirm{border-color:#cbb99a;color:#806b4c;background:transparent}
+.ball .confirm:hover{background:#bca7890a}
+.word{border-color:#d0c0a4;color:#75634b;font-size:clamp(15px,4.2vw,19px);transition:opacity .35s,transform 1.05s cubic-bezier(.2,.85,.3,1.08)}
+.word:nth-child(1){top:14%}
+.word:nth-child(2){top:16%}
+.word:nth-child(3){top:46%}
+main[data-phase=charging] .ball{animation:earth-charge .8s ease-in-out both}
+@keyframes earth-charge{0%,100%{transform:rotate(0)}35%{transform:rotate(-2deg)}70%{transform:rotate(2deg)}}
+@media(prefers-reduced-motion:reduce){.orbit-dot{display:none}}
+
+
+/* 为输入与按钮留出轨道安全区 */
+.ball .form{gap:12px}
+.ball .input,.ball .confirm{position:relative}
+
+
+/* 外围留白双环 */
+main{--size:min(296px,calc(100vw - 64px),calc(100dvh - 62px))}
+.orbits .halo{fill:none;stroke:#c5b397;stroke-width:.65;vector-effect:non-scaling-stroke}
+.orbits .halo-near{opacity:.32}
+.orbits .halo-far{opacity:.18}
+
+.closure{position:absolute;inset:0;border-radius:50%;overflow:hidden;pointer-events:none;z-index:4}
+</style></head>
+<body><main id="scene" data-phase="idle" aria-label="智慧球"><div class="ball">
+<svg class="orbits" viewBox="0 0 400 400" aria-hidden="true" focusable="false">
+<defs><mask id="orbit-clear" maskUnits="userSpaceOnUse" x="-20" y="-20" width="440" height="440">
+<rect x="-20" y="-20" width="440" height="440" fill="white"/>
+<rect class="clear-idle" x="28" y="150" width="344" height="100" rx="6" fill="black"/>
+<g class="clear-results" fill="black"><circle cx="100" cy="123" r="53"/><circle cx="300" cy="130" r="53"/><circle cx="200" cy="241" r="53"/><rect x="100" y="306" width="200" height="52" rx="23"/></g>
+</mask></defs>
+<g mask="url(#orbit-clear)">
+<circle class="orbit-dot" r="2"><animateMotion dur="30s" repeatCount="indefinite" path="M 378.1 120.7 A 195 93 -24 1 1 21.9 279.3 A 195 93 -24 1 1 378.1 120.7"/></circle>
+<circle class="halo halo-near" cx="200" cy="200" r="188"/>
+<circle class="halo halo-far" cx="200" cy="200" r="198"/>
+<circle class="outer-edge" cx="200" cy="200" r="187"/>
+<ellipse class="outer-track" cx="200" cy="200" rx="195" ry="93" transform="rotate(-24 200 200)"/>
+<ellipse class="inner-track" cx="200" cy="200" rx="166" ry="61" transform="rotate(28 200 200)"/>
+<ellipse class="meridian" cx="200" cy="200" rx="171" ry="77" transform="rotate(73 200 200)"/>
+</g></svg>
+<form id="form" class="form"><label for="question" class="sr">写下你的问题</label><textarea id="question" class="input" required maxlength="500" placeholder="写下你的问题" aria-describedby="error"></textarea><button id="confirm" class="confirm" type="submit">摇出灵感</button></form>
+<div class="closure" aria-hidden="true"><div class="shell top" aria-hidden="true"></div><div class="shell bottom" aria-hidden="true"></div><div class="seam" aria-hidden="true"></div></div>
+<div id="words" class="words" aria-live="polite" aria-atomic="true"><span class="word"></span><span class="word"></span><span class="word"></span></div>
+<div id="actions" class="actions" inert><button id="again" class="again" type="button">再摇一次</button><button id="edit" class="edit" type="button">换个问题</button></div></div>
+<div id="error" class="error" role="status"></div><div id="progress" class="sr" role="status"></div></main>
+<script>
+'use strict';
+const vocabulary="拉链 镜子 钥匙 雨伞 抽屉 杯子 保温杯 筛子 漏斗 弹簧 齿轮 杠杆 滑轮 纽扣 绳索 胶带 信封 邮票 地图 指南针 沙漏 闹钟 台灯 蜡烛 电池 插座 开关 遥控器 天线 耳机 麦克风 相机 放大镜 望远镜 显微镜 眼镜 手套 口袋 背包 行李箱 梯子 凳子 门锁 窗帘 地毯 枕头 被子 扇子 冰箱 烤箱 水壶 水龙头 水桶 扫帚 海绵 牙刷 梳子 剪刀 针线 锤子 螺丝 橡皮 铅笔 书签 拼图 积木 风筝 气球 降落伞 救生圈 担架 轮椅 头盔 面具 船桨 锚 车轮 轨道 桥梁 围栏 潮汐 种子 候鸟 菌丝 河流 山谷 瀑布 湖泊 沼泽 沙漠 绿洲 火山 岩石 沙粒 土壤 化石 水晶 冰山 雪花 露水 雾 彩虹 闪电 雷声 季风 树根 年轮 落叶 藤蔓 竹子 苔藓 蒲公英 松果 仙人掌 珊瑚 贝壳 蜂巢 蚁穴 蜘蛛网 蝉 蚯蚓 蝴蝶 萤火虫 蜜蜂 蚂蚁 海豚 鲸鱼 章鱼 水母 海星 乌龟 蜗牛 刺猬 骆驼 啄木鸟 变色龙 袋鼠 蝙蝠 狼群 鱼群 星座 月亮 日食 四季 花粉 果实 羽毛 鳞片 蛇蜕 蛹 菜市场 码头 厨房 候诊室 露营 车站 机场 港口 图书馆 书店 博物馆 剧院 舞台 后台 游乐园 动物园 水族馆 体育场 游泳池 操场 教室 宿舍 食堂 实验室 修理铺 理发店 洗衣房 茶馆 咖啡馆 酒店 电梯 楼梯 天台 阳台 地下室 隧道 十字路口 斑马线 停车场 加油站 服务区 农场 牧场 果园 温室 广场 巷子 庭院 集市 夜市 早市 庙会 婚礼 宴会 野餐 赶集 春游 排练 考场 渡口 园丁 裁判 导游 邻居 学徒 木匠 厨师 医生 护士 教师 学生 校长 船长 水手 渔民 农民 牧羊人 快递员 邮递员 消防员 救生员 守门员 教练 运动员 乐队指挥 鼓手 舞者 演员 魔术师 小丑 主持人 翻译 记者 编辑 摄影师 画家 雕刻师 钟表匠 锁匠 修理工 保安 管家 店主 摊主 服务员 顾客 房东 租客 旅客 向导 志愿者 新手 老手 观众 陪审员 调解员 收藏家 探险家 宇航员 考古学家 排队 轮班 拍卖 节日 交接 投票 抽签 报名 预约 订阅 押金 借阅 租赁 交换 赠礼 退款 试用 保修 预售 团购 接力 淘汰 晋级 积分 排名 分组 轮流 倒计时 签到 毕业 开幕 谢幕 彩排 巡回 宵禁 休假 轮休 配额 通关 对暗号 宣誓 握手 敬酒 分账 分红 众筹 互助 公证 仲裁 竞标 折叠 等待 绕行 修补 拆卸 拼接 旋转 翻转 拉伸 压缩 分割 合并 复制 隐藏 展示 放大 缩小 过滤 排序 打包 解锁 追踪 标记 擦除 暂停 加速 减速 回放 迁移 接住 抛出 推动 拉动 倾斜 平衡 叠加 留白 倒退 试探 模仿 掩护 绕圈 潜水 攀爬 滑行 跳跃 孵化 发芽 漂浮 羞耻 好奇 嫉妒 信任 乡愁 同情 孤独 安心 惊喜 失望 焦虑 期待 怀念 后悔 自豪 尴尬 感激 愤怒 委屈 敬畏 无聊 兴奋 疲惫 舒适 饥饿 口渴 温暖 寒冷 疼痛 痒 酸甜 苦涩 陌生 熟悉 亲密 疏远 归属 陪伴 竞争 合作 承诺 秘密 误会 默契 依赖 自由 公平 勇气 犹豫 遗憾";
+const pool=[...new Set(vocabulary.split(/\s+/))];const $=id=>document.getElementById(id);let busy=false,last=[];
+function randomIndex(n){const a=new Uint32Array(1),limit=Math.floor(4294967296/n)*n;do{crypto.getRandomValues(a);}while(a[0]>=limit);return a[0]%n;}
+function wait(ms){return new Promise(resolve=>setTimeout(resolve,matchMedia('(prefers-reduced-motion: reduce)').matches?0:ms));}
+async function draw(){if(busy)return;let selected;try{const available=pool.filter(w=>!last.includes(w));selected=Array.from({length:3},()=>available.splice(randomIndex(available.length),1)[0]);}catch(e){$('error').textContent='随机抽词失败，请使用较新的浏览器。';return;}busy=true;$('error').textContent='';$('form').inert=true;$('actions').inert=true;$('confirm').disabled=true;$('again').disabled=true;$('edit').disabled=true;$('words').setAttribute('aria-busy','true');$('progress').textContent='球正在合拢。';$('scene').dataset.phase='closing';await wait(950);$('words').querySelectorAll('.word').forEach((el,i)=>el.textContent=selected[i]);$('scene').dataset.phase='charging';await wait(800);$('scene').dataset.phase='opening';await wait(1200);$('scene').dataset.phase='revealed';last=selected;$('words').setAttribute('aria-busy','false');$('progress').textContent='';$('actions').inert=false;$('again').disabled=false;$('edit').disabled=false;busy=false;$('again').focus({preventScroll:true});}
+$('form').addEventListener('submit',e=>{e.preventDefault();if(!$('question').value.trim()){$('error').textContent='请写下你的问题。';$('question').focus();return;}draw();});
+$('question').addEventListener('input',()=>$('error').textContent='');
+$('question').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){e.preventDefault();$('form').requestSubmit();}});
+$('again').addEventListener('click',draw);
+$('edit').addEventListener('click',()=>{if(busy)return;$('scene').dataset.phase='idle';$('actions').inert=true;$('form').inert=false;$('confirm').disabled=false;$('words').querySelectorAll('.word').forEach(el=>el.textContent='');$('error').textContent='';$('question').focus({preventScroll:true});$('question').select();});
+</script></body></html>

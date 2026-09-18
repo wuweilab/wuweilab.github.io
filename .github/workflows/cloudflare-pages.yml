@@ -33,7 +33,7 @@ jobs:
         run: |
           mkdir -p site
           cp index.html site/
-          cp -R articles assets site/
+          cp -R articles assets wisdom-ball site/
           cp .nojekyll site/
 
       - name: Deploy production website

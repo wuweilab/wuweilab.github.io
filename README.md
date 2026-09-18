@@ -21,4 +21,4 @@
 
 每次推送 main 分支，GitHub Actions 工作流 .github/workflows/cloudflare-pages.yml 自动将网站发布到 Cloudflare Pages 项目 wuweilab 的生产分支 main。也可在 Actions 中手动运行 Deploy Cloudflare Pages。
 
-首次使用须设置仓库 Secret CLOUDFLARE_API_TOKEN，权限为 Account / Cloudflare Pages / Edit，并限定到本项目所属账户。工作流仅上传 index.html、articles/、assets/ 和 .nojekyll；旧项目 ai-workshop 仅承载迁移跳转。
+首次使用须设置仓库 Secret CLOUDFLARE_API_TOKEN，权限为 Account / Cloudflare Pages / Edit，并限定到本项目所属账户。工作流仅上传 index.html、articles/、assets/、wisdom-ball/ 和 .nojekyll；旧项目 ai-workshop 仅承载迁移跳转。
