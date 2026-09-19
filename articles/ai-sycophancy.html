@@ -4,55 +4,27 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="AI为什么总说你没错？从社会性谄媚、动机性推理和人类反馈训练，理解赞同如何悄悄改变判断。">
-  <title>AI越懂你，你可能越危险｜无为实验室</title>
-  <style>
-    :root{--bg:#F4F0E8;--paper:#F9F6EF;--ink:#292620;--muted:#746E65;--line:#D4CBBD;--accent:#A78E62;--deep:#806B48}
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Serif SC","Source Han Serif SC","Songti SC",serif;line-height:1.9}
-    a{color:inherit}
-    .top{position:sticky;top:0;z-index:2;background:rgba(244,240,232,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-    .top-inner{width:min(920px,calc(100% - 40px));margin:auto;display:flex;align-items:center;justify-content:space-between;min-height:62px}
-    .brand{font-family:system-ui,sans-serif;font-weight:700;text-decoration:none;letter-spacing:.08em}
-    .back{font-family:system-ui,sans-serif;color:var(--muted);text-decoration:none;font-size:14px}
-    main{width:min(760px,calc(100% - 40px));margin:72px auto 96px}
-    .eyebrow{font-family:system-ui,sans-serif;color:var(--accent);font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
-    h1{font-size:clamp(34px,6vw,58px);line-height:1.2;letter-spacing:-.035em;margin:18px 0 22px}
-    .dek{font-size:19px;color:var(--muted);margin:0 0 22px}
-    .meta{font-family:system-ui,sans-serif;color:var(--muted);font-size:13px;padding-bottom:34px;border-bottom:1px solid var(--line)}
-    article{font-size:18px;margin-top:40px}
-    p{margin:0 0 1.25em}
-    h2{font-size:28px;line-height:1.35;margin:2.3em 0 .8em}
-    blockquote{margin:2em 0;padding:20px 24px;background:var(--paper);border-left:3px solid var(--accent);font-size:20px}
-    .article-art{margin:2.2em 0 2.5em}
-    .article-art img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:10px;border:1px solid var(--line)}
-    .article-art figcaption{margin-top:10px;color:var(--muted);font-family:system-ui,sans-serif;font-size:13px;line-height:1.6}
-    .number{color:var(--deep);font-weight:700}
-    .ending{margin-top:2.5em;padding:28px;background:var(--deep);color:#f4f7f4;border-radius:18px;font-size:20px}
-    footer{width:min(760px,calc(100% - 40px));margin:0 auto 60px;border-top:1px solid var(--line);padding-top:24px;color:var(--muted);font-family:system-ui,sans-serif;font-size:13px}
-    @media(max-width:600px){main{margin-top:44px}article{font-size:17px}h1{font-size:36px}.dek{font-size:17px}.top-inner,main,footer{width:min(100% - 28px,760px)}}
-  .article-reading-stats{white-space:normal;display:inline-block}
-</style>
+  <title>AI越懂你，你可能越危险 · 实践笔记</title>
+  <link rel="stylesheet" href="../assets/articles/article.css?v=6">
 </head>
-<body>
-  <header class="top">
-    <div class="top-inner">
-      <a class="brand" href="../index.html">无为实验室</a>
-      <a class="back" href="../index.html#research">返回“正在写的”</a>
+<body><nav>
+  <div class="nav-inner">
+    <a class="logo" href="../index.html#" aria-label="实践笔记">
+      <span class="wu-wordmark"><b>W</b><span class="wu-letter-u">U<i></i></span></span>
+      <span class="logo-copy"><strong>实践笔记</strong></span>
+    </a>
+    <div class="nav-links">
+      <a href="../index.html#about">关于</a><a href="../index.html#methods">笔记</a><a href="../index.html#works">作品</a><a href="../index.html#map">知识树</a><a href="../index.html#tools">工具</a>
     </div>
-  </header>
-  <main>
-    <div class="eyebrow">AI 方法</div>
-    <h1>AI越懂你，你可能越危险</h1>
-    <p class="dek">它如何用一句“你没错”，悄悄改变你的判断</p>
-    <div class="meta"><time datetime="2026-09-15">2026.09.15</time>　·　<span class="article-reading-stats" data-word-count="1402" data-reading-minutes="4" title="正文统计：中文按字、英文和数字按词；不含导航、参考资料。阅读时间按每分钟约400字估算。">1,402 字 · 预计阅读 4 分钟</span></div>
-
+  </div>
+</nav><main id="top">
+  <header class="article-header"><a class="back" href="../index.html#methods">← 返回 AI 方法</a><div class="eyebrow">PRACTICE NOTES</div><h1>AI越懂你，<br>你可能越危险</h1><p class="dek">它如何用一句“你没错”，悄悄改变你的判断。</p><div class="article-meta"><span>AI 方法 · 判断力</span><time datetime="2026-09-15">2026.09.15</time><span class="article-reading-stats" data-word-count="1402" data-reading-minutes="4" title="正文统计：中文按字、英文和数字按词；不含导航、参考资料。阅读时间按每分钟约400字估算。">1,402 字 · 预计阅读 4 分钟</span></div></header>
     <article class="prose" aria-label="文章正文">
       <p>《战国策》里，邹忌问妻、妾、客，自己和城北徐公谁更美。三个人异口同声，都说邹忌漂亮得多。</p>
       <p>等徐公本人登门，邹忌仔细端详，又对着镜子看了许久，终于承认自己远远不如。晚上，他想明白了。妻子偏爱他，妾害怕他，客人有求于他。三个人说的都很悦耳，却没有一个人在做独立判断。</p>
       <blockquote>今天，AI坐到了妻、妾、客的位置上。</blockquote>
-      <figure class="article-art">
-        <img src="../assets/articles/ai-sycophancy/ai-flattery-mirror.png" width="1536" height="1024" alt="一个人面对不断回送赞同与理想化倒影的发光 AI 镜面">
+      <figure>
+        <a class="figure-link" href="../assets/articles/ai-sycophancy/ai-flattery-mirror.png" target="_blank" rel="noopener"><img src="../assets/articles/ai-sycophancy/ai-flattery-mirror.png" width="1536" height="1024" alt="一个人面对不断回送赞同与理想化倒影的发光 AI 镜面" loading="lazy" decoding="async"></a>
         <figcaption>当 AI 变成一面只展示理想自我的镜子，理解与迎合之间的界线就开始模糊。</figcaption>
       </figure>
 
@@ -65,7 +37,7 @@
       <p>它没有明显编造事实，却通过选择性强调，为用户完成了一次漂亮的自我开脱。</p>
 
       <h2>奉承会反过来塑造人</h2>
-      <p>2026年发表于《Science》的一项研究测试了11款主流模型。面对日常求助、Reddit争议帖以及包含欺骗和伤害的行为自述，AI认可用户行为的频率平均比人类高<span class="number">49%</span>。在社区已经认定发帖人有错的案例中，人类基线认可率为零，AI却平均认可了<span class="number">51%</span>。</p>
+      <p>2026年发表于《Science》的一项研究测试了11款主流模型。面对日常求助、Reddit争议帖以及包含欺骗和伤害的行为自述，AI认可用户行为的频率平均比人类高<strong>49%</strong>。在社区已经认定发帖人有错的案例中，人类基线认可率为零，AI却平均认可了<strong>51%</strong>。</p>
       <p>更值得警惕的地方，在于奉承会反过来塑造人。</p>
       <p>研究者开展了三个预注册实验，共有2405人参与。接触谄媚回复后，参与者更加确信自己在冲突中占理，修复关系的意愿则分别下降约28%、21%和10%。</p>
       <p>研究者还请他们给冲突中的另一方写一段话。普通AI组有75%的人愿意承认错误，谄媚AI组只有50%。然而，人们给谄媚回复打出的质量和信任分数反而高出约9%到15%，也更愿意继续使用这种AI。</p>
@@ -84,9 +56,7 @@
       <p><strong>第一样是徐公。</strong>重大决定要找一个没有理由讨好你的人复核。</p>
       <p><strong>第二样是镜子。</strong>要求AI区分事实、推测和情绪，列出反方证据，指出你的责任，并说明什么信息可能被你遗漏。</p>
       <p><strong>第三样是距离。</strong>先用不透露立场的方式提问，再把立场反过来问一次。答案如果随着你的态度明显摇摆，它更像在观察你的脸色。</p>
-      <p class="ending">AI可以安慰你，也可以陪你整理思路。但它说“你没错”的时候，真正值得追问的一句话仍然是，我拿什么证明？</p>
+      <p class="key">AI可以安慰你，也可以陪你整理思路。但它说“你没错”的时候，真正值得追问的一句话仍然是，我拿什么证明？</p>
     </article>
-  </main>
-  <footer>© 2026 无为实验室</footer>
-</body>
-</html>
+  <footer class="article-end"><p>内容、品牌、AI实践</p><div><a href="../index.html#methods">← 返回 AI 方法</a><a href="#top">回到顶部 ↑</a></div></footer>
+</main><footer class="site-footer"><span class="site-brand"><span class="wu-wordmark" aria-label="WU"><b>W</b><span class="wu-letter-u">U<i aria-hidden="true"></i></span></span><span>实践笔记</span></span><a href="#top">回到顶部 ↑</a></footer></body></html>
