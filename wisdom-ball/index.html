@@ -56,6 +56,8 @@ main{--size:min(296px,calc(100vw - 64px),calc(100dvh - 62px))}
 .orbits .halo-far{opacity:.18}
 
 .closure{position:absolute;inset:0;border-radius:50%;overflow:hidden;pointer-events:none;z-index:4}
+.word{white-space:nowrap;word-break:keep-all;overflow-wrap:normal}
+.word[data-long="true"]{font-size:clamp(12px,3.5vw,16px);letter-spacing:-.04em}
 </style></head>
 <body><main id="scene" data-phase="idle" aria-label="智慧球"><div class="ball">
 <svg class="orbits" viewBox="0 0 400 400" aria-hidden="true" focusable="false">
@@ -84,10 +86,10 @@ const vocabulary="拉链 镜子 钥匙 雨伞 抽屉 杯子 保温杯 筛子 漏
 const pool=[...new Set(vocabulary.split(/\s+/))];const $=id=>document.getElementById(id);let busy=false,last=[];
 function randomIndex(n){const a=new Uint32Array(1),limit=Math.floor(4294967296/n)*n;do{crypto.getRandomValues(a);}while(a[0]>=limit);return a[0]%n;}
 function wait(ms){return new Promise(resolve=>setTimeout(resolve,matchMedia('(prefers-reduced-motion: reduce)').matches?0:ms));}
-async function draw(){if(busy)return;let selected;try{const available=pool.filter(w=>!last.includes(w));selected=Array.from({length:3},()=>available.splice(randomIndex(available.length),1)[0]);}catch(e){$('error').textContent='随机抽词失败，请使用较新的浏览器。';return;}busy=true;$('error').textContent='';$('form').inert=true;$('actions').inert=true;$('confirm').disabled=true;$('again').disabled=true;$('edit').disabled=true;$('words').setAttribute('aria-busy','true');$('progress').textContent='球正在合拢。';$('scene').dataset.phase='closing';await wait(950);$('words').querySelectorAll('.word').forEach((el,i)=>el.textContent=selected[i]);$('scene').dataset.phase='charging';await wait(800);$('scene').dataset.phase='opening';await wait(1200);$('scene').dataset.phase='revealed';last=selected;$('words').setAttribute('aria-busy','false');$('progress').textContent='';$('actions').inert=false;$('again').disabled=false;$('edit').disabled=false;busy=false;$('again').focus({preventScroll:true});}
+async function draw(){if(busy)return;let selected;try{const available=pool.filter(w=>!last.includes(w));selected=Array.from({length:3},()=>available.splice(randomIndex(available.length),1)[0]);}catch(e){$('error').textContent='随机抽词失败，请使用较新的浏览器。';return;}busy=true;$('error').textContent='';$('form').inert=true;$('actions').inert=true;$('confirm').disabled=true;$('again').disabled=true;$('edit').disabled=true;$('words').setAttribute('aria-busy','true');$('progress').textContent='球正在合拢。';$('scene').dataset.phase='closing';await wait(950);$('words').querySelectorAll('.word').forEach((el,i)=>{el.textContent=selected[i];el.dataset.long=Array.from(selected[i]).length>=4;});$('scene').dataset.phase='charging';await wait(800);$('scene').dataset.phase='opening';await wait(1200);$('scene').dataset.phase='revealed';last=selected;$('words').setAttribute('aria-busy','false');$('progress').textContent='';$('actions').inert=false;$('again').disabled=false;$('edit').disabled=false;busy=false;$('again').focus({preventScroll:true});}
 $('form').addEventListener('submit',e=>{e.preventDefault();if(!$('question').value.trim()){$('error').textContent='请写下你的问题。';$('question').focus();return;}draw();});
 $('question').addEventListener('input',()=>$('error').textContent='');
 $('question').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){e.preventDefault();$('form').requestSubmit();}});
 $('again').addEventListener('click',draw);
-$('edit').addEventListener('click',()=>{if(busy)return;$('scene').dataset.phase='idle';$('actions').inert=true;$('form').inert=false;$('confirm').disabled=false;$('words').querySelectorAll('.word').forEach(el=>el.textContent='');$('error').textContent='';$('question').focus({preventScroll:true});$('question').select();});
+$('edit').addEventListener('click',()=>{if(busy)return;$('scene').dataset.phase='idle';$('actions').inert=true;$('form').inert=false;$('confirm').disabled=false;$('words').querySelectorAll('.word').forEach(el=>{el.textContent='';delete el.dataset.long;});$('error').textContent='';$('question').focus({preventScroll:true});$('question').select();});
 </script></body></html>
